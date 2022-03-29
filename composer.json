@@ -1,0 +1,15 @@
+{
+    "name": "webfactor/wf_basic_function_package",
+    "description": "A package to add often needed, basic functions to a laravel project",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ben-Gentner",
+            "email": "ben.gentner@webfactor.de"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ziffmedia/nova-select-plus": "^1.0"
+    }
+}
