@@ -47,8 +47,10 @@ class Gallery extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("title", "title"),
+            Text::make("slug", "slug"),
             Textarea::make("description", "description"),
             BelongsTo::make("user"),
+            BelongsTo::make("media", "header_image", Media::class),
             SelectPlus::make("media", 'media', Media::class)->label('title'),
         ];
     }

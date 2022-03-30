@@ -17,8 +17,16 @@ class GallerySeeder extends Seeder
     {
         Gallery::create([
             "title" => "test_gallery_1",
-            "description" => "test_galler_1_description",
+            "description" => "test_gallery_1_description",
+            "slug" => "test_gallery_1",
             "user_id" => 1
+        ]);
+        Gallery::create([
+            "title" => "test_gallery_2",
+            "description" => "test_gallery_2_description",
+            "slug" => "test_gallery_2",
+            "user_id" => 1,
+            "header_image_id" => 1
         ]);
 
         //add images

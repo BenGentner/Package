@@ -19,10 +19,17 @@ class CreateGalleriesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('header_image_id')->nullable();
+            $table->string('slug')->unique();
 
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
+                ->onDelete('set null');
+
+            $table->foreign('header_image_id')
+                ->references('id')
+                ->on('media')
                 ->onDelete('set null');
         });
     }

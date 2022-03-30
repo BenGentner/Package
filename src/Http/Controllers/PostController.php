@@ -12,13 +12,14 @@ class PostController extends Controller
      * not sure if front end create, edit and so on is needed since nova will be used
      */
 
-    public function index()
-    {
-        // return default view with all posts
-    }
-    public function show(Post $post)
+    public function index(Post $post)
     {
         // return default view with one post
+    }
+    public function show()
+    {
+        // return default view with all posts
+        return Post::all()->load(["user", "category"]);
     }
     public function create()
     {

@@ -11,11 +11,11 @@ class GalleryController extends Controller
     public function index($gallery)
     {
         $gallery = Gallery::where("title", $gallery)->first();
-        return $gallery;
+        return $gallery->load(['user', 'media']);
     }
 
     public function show()
     {
-        return Gallery::all();
+        return Gallery::all()->load(['user', 'header_image']);
     }
 }

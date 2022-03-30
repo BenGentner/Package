@@ -19,4 +19,8 @@ class Gallery extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function header_image()
+    {
+        return $this->belongsTo(Media::class);
+    }
 }

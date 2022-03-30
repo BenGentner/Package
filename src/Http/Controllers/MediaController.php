@@ -21,4 +21,10 @@ class MediaController extends Controller
         return redirect("./storage/$media->path");
     }
 
+    public function testing()
+    {
+//        return  "hi";
+        return view("WfFunctions::test");
+    }
+
 }
