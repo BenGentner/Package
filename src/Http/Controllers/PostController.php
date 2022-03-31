@@ -12,9 +12,23 @@ class PostController extends Controller
      * not sure if front end create, edit and so on is needed since nova will be used
      */
 
-    public function index(Post $post)
+    public function index_api($post)
     {
-        // return default view with one post
+        $post = Post::where("slug", $post)
+                        ->orwhere('id', $post)->first();
+        if(!$post)
+            abort(404);
+
+        return $post;
+    }
+    public function index_view($post)
+    {
+        /*
+         * TODO:
+         *  - view
+         */
+        $post = $this->index_api($post);
+        return view("WfFunctions::single_post", compact("post"));
     }
     public function show_api()
     {
