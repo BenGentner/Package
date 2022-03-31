@@ -8,11 +8,18 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 use phpDocumentor\Reflection\DocBlock\Tag;
 use Webfactor\WfBasicFunctionPackage\Console\AssetCommand;
+use Webfactor\WfBasicFunctionPackage\Console\DevCommand;
+use Webfactor\WfBasicFunctionPackage\Console\InstallCommand;
+use Webfactor\WfBasicFunctionPackage\Console\PublishCommand;
 use Webfactor\WfBasicFunctionPackage\database\seeders\TagSeeder;
 use Webfactor\WfBasicFunctionPackage\Nova\Post;
 
 class BasicFunctionsServiceProvider extends ServiceProvider
 {
+    /*
+     * TODO:
+     *  - clean up provider / make multiple providers and one that calls the others
+     */
     /**
      * Register services.
      *
@@ -32,6 +39,14 @@ class BasicFunctionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*
+         *         TODO:
+                        - api routes => return json
+                        - view routes => return blade views
+                        => maybe separate controller and publish those with the view routes
+                        - clean up Service Provider
+         */
+
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
@@ -46,29 +61,33 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             }
         }
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'WfFunctions');
+        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
 
         $this->loadSeeders(config('wf-functions.seeder'));
 
         /**
          * todo:
-         * - publish vue components
+         *  - publish vue components / views
+         *  - load views from package or project => potential change
          */
 
         //publishes just one component (just remove the component to publish the hole directory)
 
         $this->publishes([
-            __DIR__.'/../resources/Views/vue-components/test.vue' => resource_path('views/Webfactor/WfBasicFunctionPackage/test.vue'),
-        ], 'WfBasicFunctionPackage-assets');
+            __DIR__.'/../resources/Views/' => resource_path('views/Webfactor/WfBasicFunctionPackage/'),
+        ], 'WfBasicFunctionPackage-views');
 
         //publish app.js
         $this->publishes([
             __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
-        ], 'WfBasicFunctionPackage-assets');
+        ], 'WfBasicFunctionPackage-js');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallCommand::class,
                 AssetCommand::class,
+                PublishCommand::class,
+                DevCommand::class
             ]);
         }
     }

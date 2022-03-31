@@ -23,5 +23,21 @@ class PostSeeder extends Seeder
            "body" => "Body of the first Post",
             "slug"=> "first_post"
         ]);
+        Post::create([
+            "category_id" => 1,
+            "user_id" => 1,
+            "title" => "Second Post",
+            "excerpt" => "Excerpt: Second Post",
+            "body" => "Body of the second Post",
+            "slug"=> "second_post"
+        ]);
+        Post::create([
+            "category_id" => 1,
+            "user_id" => 1,
+            "title" => "Third Post",
+            "excerpt" => "Excerpt: Third Post",
+            "body" => "Body of the third Post",
+            "slug"=> "third_post"
+        ]);
     }
 }

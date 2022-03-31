@@ -1,13 +1,19 @@
 <template>
     <div>
-        <div v-for="post in posts" v-text="post.title"></div>
+<!--        post preview-->
+         <post-preview
+             v-for="post in posts"
+             v-bind:data="post"
+             v-bind:key="post.id">
+         </post-preview>
     </div>
 </template>
 
 <script>
+import PostPreview from "./post-preview";
 export default {
     name: "posts-grid.vue",
-
+    components: {PostPreview},
     data() {
         return {
             posts: []
@@ -15,7 +21,7 @@ export default {
     },
 
     created() {
-        axios.get("/posts")
+        axios.get("/api/posts/")
             .then(response => this.posts = response.data);
     }
 }

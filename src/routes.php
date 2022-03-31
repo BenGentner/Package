@@ -23,9 +23,9 @@ Route::get('/media/{media:slug}', [MediaController::class, 'index']);
  * Post
  */
 
-Route::get('/posts/', [PostController::class, 'show']);
+Route::get('/api/posts/', [PostController::class, 'show_api']);
 Route::get('/post/{post}', [PostController::class, 'index']);
 
 
-Route::get('/view', [MediaController::class, 'testing']);
+Route::get('/posts/', [PostController::class, 'show_view']);
 

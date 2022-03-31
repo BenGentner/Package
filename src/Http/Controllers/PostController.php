@@ -16,10 +16,18 @@ class PostController extends Controller
     {
         // return default view with one post
     }
-    public function show()
+    public function show_api()
     {
         // return default view with all posts
         return Post::all()->load(["user", "category"]);
+        /*
+         * TODO:
+         */
+//        return Post::latest()->paginate(2);
+    }
+    public function show_view()
+    {
+        return view("WfFunctions::posts");
     }
     public function create()
     {

@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-class AssetCommand extends Command
+class DevCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'WfBasicFunctionPackage:Update';
+    protected $signature = 'WfBasicFunctionPackage:dev';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Updates published WfBasicFunctionPackage Vue components';
+    protected $description = 'Publish WfBasicFunctionPackage Views';
 
     /**
      * Execute the console command.
@@ -31,8 +31,13 @@ class AssetCommand extends Command
     {
         /*
           TODO:
-           -make echo output prettier
+           - probably remove this command (just for dev)
          */
+
+        $this->call('vendor:publish', [
+            '--tag' => 'WfBasicFunctionPackage-views',
+            '--force' => true,
+        ]);
 
         echo "Recompiling assets! Please stand by!";
 
@@ -49,6 +54,6 @@ class AssetCommand extends Command
             '--force' => true,
         ]);
 
-        echo "Update complete";
+        echo "dev complete";
     }
 }
