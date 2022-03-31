@@ -10,4 +10,3 @@
     <script defer src="{{(asset('js/Webfactor/WfBasicFunctionPackage/app.js'))}}"></script>
 </html>
 
-{{--TODO: blade in anderen ordner (ordnerstruktur ändern--}}

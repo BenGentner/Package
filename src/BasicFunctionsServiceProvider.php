@@ -40,13 +40,22 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     public function boot()
     {
         /*
-         *         TODO:
-                        - api routes => return json
-                        - view routes => return blade views
-                        => maybe separate controller and publish those with the view routes
-                        - clean up Service Provider
-                        - package read me
-                        - clean up !!!
+         * TODO:
+            - api routes => return json
+            - view routes => return blade views
+            => maybe separate controller and publish those with the view routes
+            - clean up Service Provider
+            - package read me
+            - clean up !!!
+            - check if all() methods make sense (or render the first 10 and then the next 10 ....)
+            - check which controllers, ... should be published and then add them to publish (and) install command
+            - roles?
+            - comments (everything xD, has to have front-end create, edit, ... views(/vues) and controller methods)
+            - comments can be deactivated!
+            - front-end create post needed in package?
+            - controller: store, update methods with basic validation? (User can then expand them and create views)
+            - basic create, ... view?
+
 
          */
 

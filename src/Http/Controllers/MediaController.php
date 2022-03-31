@@ -9,14 +9,18 @@ use Webfactor\WfBasicFunctionPackage\Models\Media;
 
 class MediaController extends Controller
 {
-    public function index_api($media)
+    public function index_api($key)
     {
         /**
          * TODO:
-         *  - Null abfrage
+         *  - tests (new where and abort part)
          *  - media return anpassen (redirect("./storage/$media->path"))
          */
-        $media = Media::where("slug", $media)->first();
+        $media = Media::where("slug", $key)
+                        ->orwhere("id", $key)->first();
+        if(!$media)
+            abort(404);
+
         return $media;
     }
 

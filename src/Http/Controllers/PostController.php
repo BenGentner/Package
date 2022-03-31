@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         /*
          * TODO:
-         *  - view
+         *  - view improvements
          */
         $post = $this->index_api($post);
         return view("WfFunctions::single_post", compact("post"));
@@ -36,6 +36,7 @@ class PostController extends Controller
         return Post::all()->load(["user", "category"]);
         /*
          * TODO:
+         *  -check if all posts should be loaded or just a couple (extra method needed)
          */
 //        return Post::latest()->paginate(2);
     }
