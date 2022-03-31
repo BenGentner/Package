@@ -48,6 +48,7 @@ class Post extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("title", "title"),
+            Text::make("slug", "slug"),
             BelongsTo::make("category"),
             //maybe hide user when creating / updating and auto set it
             BelongsTo::make("user"),

@@ -3,10 +3,9 @@
 namespace Webfactor\WfBasicFunctionPackage\database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Webfactor\WfBasicFunctionPackage\Models\Tag;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tag>
- */
+
 class TagFactory extends Factory
 {
     /**
@@ -17,7 +16,12 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => $this->faker->word()
         ];
+    }
+
+    public function modelName()
+    {
+        return Tag::class;
     }
 }
