@@ -1,20 +1,38 @@
 <?php
     return [
         /*
+         * ----------------------------------------
+         *
+         * ----------------------------------------
+         *
+         */
+
+
+        /*
            *-----------------------------
            *         Gallery Paths
            *-----------------------------
            */
 
         /*
-         * path to list return of all galleries:
+         * path  all galleries:
          */
 
         "galleries_path" => "galleries/",
 
         /*
-         * path to return a single gallery with images
+         * path a single gallery with images
          */
 
-        "gallery_path" => "gallery/{gallery:slug}/",
+        "gallery_path" => "gallery/{key}/",
+
+        /*
+         * path to a single medium (image)
+         */
+        "medium_path" => "media/{key}/",
+
+        /*
+         * path to a single post
+         */
+        "single_post_path" => "post/{key}/"
     ];

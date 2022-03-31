@@ -1,5 +1,6 @@
 <template>
-    <a  :href="'/post/' + $attrs.data.slug" class="border-4 m-2 p-4 hover:border-blue-300 flex grid grid-cols-2" @click="loadPost">
+    <a  :href="post_url + $attrs.data.slug"
+        class="border-4 m-2 p-4 hover:border-blue-300 flex grid grid-cols-2 rounded-3xl bg-gray-100 border-gray-400">
         <div class="col-start-1" v-text="$attrs.data.title"></div>
         <div class="col-start-2 text-right" v-text="'User: ' + $attrs.data.user.name"></div>
         <br>
@@ -15,13 +16,16 @@ export default {
 
     data() {
         return {
-
+            post_url: ""
         }
     },
     methods: {
-        loadPost() {
-            console.log("hi")
-        }
+
+    },
+
+    created() {
+        axios.get("/url/single_post_path/")
+            .then(response => this.post_url = response.data.replace('{key}/', ''));
     }
 }
 </script>

@@ -14,8 +14,13 @@ class GalleryController extends Controller
         return $gallery->load(['user', 'media']);
     }
 
-    public function show()
+    public function show_api()
     {
         return Gallery::all()->load(['user', 'header_image']);
+    }
+    public function show_view()
+    {
+        //gallery view
+//        return Gallery::all()->load(['user', 'header_image']);
     }
 }

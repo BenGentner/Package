@@ -9,16 +9,15 @@ use Webfactor\WfBasicFunctionPackage\Models\Media;
 
 class MediaController extends Controller
 {
-    public function index($media)
+    public function index_api($media)
     {
         /**
          * TODO:
-         * Null abfrage
+         *  - Null abfrage
+         *  - media return anpassen (redirect("./storage/$media->path"))
          */
-
-
         $media = Media::where("slug", $media)->first();
-        return redirect("./storage/$media->path");
+        return $media;
     }
 
     public function testing()

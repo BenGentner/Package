@@ -45,6 +45,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
                         - view routes => return blade views
                         => maybe separate controller and publish those with the view routes
                         - clean up Service Provider
+                        - package read me
          */
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
