@@ -3,16 +3,12 @@
 namespace Webfactor\WfBasicFunctionPackage;
 
 use Database\Seeders\DatabaseSeeder;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use phpDocumentor\Reflection\DocBlock\Tag;
 use Webfactor\WfBasicFunctionPackage\Console\AssetCommand;
 use Webfactor\WfBasicFunctionPackage\Console\DevCommand;
 use Webfactor\WfBasicFunctionPackage\Console\InstallCommand;
 use Webfactor\WfBasicFunctionPackage\Console\PublishCommand;
-use Webfactor\WfBasicFunctionPackage\database\seeders\TagSeeder;
-use Webfactor\WfBasicFunctionPackage\Nova\Post;
 
 class BasicFunctionsServiceProvider extends ServiceProvider
 {
@@ -27,24 +23,24 @@ class BasicFunctionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Webfactor\WfBasicFunctionPackage\Http\Controllers\PostController');
+        /*
+         * TODO:
+         *  -make controller probably not needed:
+         */
+//        $this->app->make('Webfactor\WfBasicFunctionPackage\Http\Controllers\PostController');
+        $this->mergeConfig();
+    }
+
+    private function mergeConfig()
+    {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'wf-functions');
         $this->mergeConfigFrom(__DIR__.'/../config/route_config.php', 'wf-routes');
     }
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        /*
+    /*
          * TODO:
             - api routes => return json
             - view routes => return blade views
             => maybe separate controller and publish those with the view routes
-            - clean up Service Provider
             - package read me
             - clean up !!!
             - check if all() methods make sense (or render the first 10 and then the next 10 ....)
@@ -55,13 +51,32 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
             - basic create, ... view?
-
-
+            - update nova (new columns and comments)
+            - comments on comments ?
          */
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->loadMethods();
+        $this->loadNova();
+        $this->publishResources();
+        $this->addCommands();
+    }
 
+    private function loadMethods()
+    {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
+        $this->loadSeeders(config('wf-functions.seeder'));
+    }
 
+    private function loadNova()
+    {
         $models = config('wf-functions.models');
         $resources = config('wf-functions.resources');
 
@@ -72,15 +87,13 @@ class BasicFunctionsServiceProvider extends ServiceProvider
                 Nova::resources([$class]);
             }
         }
+    }
 
-        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
-
-        $this->loadSeeders(config('wf-functions.seeder'));
-
+    private function publishResources()
+    {
         /**
          * todo:
-         *  - publish vue components / views
-         *  - load views from package or project => potential change
+         *  - publish which vue components / views
          */
 
         //publishes just one component (just remove the component to publish the hole directory)
@@ -93,7 +106,10 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
         ], 'WfBasicFunctionPackage-js');
+    }
 
+    private function addCommands()
+    {
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallCommand::class,
@@ -103,7 +119,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             ]);
         }
     }
-
 
     private function loadSeeders($seed_list){
         $this->callAfterResolving(DatabaseSeeder::class, function ($seeder) use ($seed_list) {
