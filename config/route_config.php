@@ -34,5 +34,10 @@
         /*
          * path to a single post
          */
-        "single_post_path" => "post/{key}/"
+        "single_post_path" => "post/{key}/",
+
+        /*
+         * path to store a comment
+         */
+        "store_comment" => '/api/' . 'post/{key}/' . 'comment/'
     ];

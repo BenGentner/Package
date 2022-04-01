@@ -24,7 +24,7 @@ class PostSeeder extends Seeder
             "slug" => "first_post"
         ]);
 
-        Post::factory(10)->create();
+        Post::factory(5)->create();
 
     }
 }

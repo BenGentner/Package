@@ -30,7 +30,7 @@ class PostController extends Controller
          *  - view improvements
          */
         $post = $this->index_api($post);
-        return view("WfFunctions::single_post", compact("post"));
+        return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
     }
     public function show_api()
     {
@@ -44,7 +44,7 @@ class PostController extends Controller
     }
     public function show_view()
     {
-        return view("WfFunctions::posts");
+        return view("Webfactor/WfBasicFunctionPackage/views/posts");
     }
     public function create()
     {

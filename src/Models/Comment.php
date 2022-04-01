@@ -12,6 +12,8 @@ class Comment extends Model
 
     protected $with = ["user"];
 
+    protected $fillable = ["user_id", "body", "post_id"];
+
     protected static function newFactory()
     {
         return \Webfactor\WfBasicFunctionPackage\database\factories\CommentFactory::new();

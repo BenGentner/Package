@@ -38,6 +38,9 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     }
     /*
          * TODO:
+     *      - IMPORTANT:
+     *          -auth improvements (middleware web needed) => group routes
+     *          - ui changes because of master
             - api routes => return json
             - view routes => return blade views
             => maybe separate controller and publish those with the view routes
@@ -53,6 +56,9 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - basic create, ... view?
             - update nova (new columns and comments)
             - comments on comments ?
+            - install command with register service provider (example install command laravel nova)
+            - check needed packages and add missing to require
+            - php .\artisan ui:auth needed! (maybe add to install, definitely add to read me)
          */
     /**
      * Bootstrap services.
@@ -71,7 +77,12 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
+        /*
+         * TODO:
+         *  - currently using published views => we don't have to load them
+         *  - just load views that won't be published
+         */
+//        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
         $this->loadSeeders(config('wf-functions.seeder'));
     }
 
