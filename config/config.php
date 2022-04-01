@@ -14,6 +14,7 @@
           'category' => \Webfactor\WfBasicFunctionPackage\Models\Category::class,
           'media' => \Webfactor\WfBasicFunctionPackage\Models\Media::class,
           'gallery' => \Webfactor\WfBasicFunctionPackage\Models\Gallery::class,
+          'comment' => \Webfactor\WfBasicFunctionPackage\Models\Comment::class,
         ],
 
         /*
@@ -26,6 +27,7 @@
             'category' => \Webfactor\WfBasicFunctionPackage\Nova\Category::class,
             'media' => \Webfactor\WfBasicFunctionPackage\Nova\Media::class,
             'gallery' => \Webfactor\WfBasicFunctionPackage\Nova\Gallery::class,
+            'comment' => \Webfactor\WfBasicFunctionPackage\Nova\Comment::class,
         ],
 
         /*
@@ -39,6 +41,7 @@
             'Webfactor\WfBasicFunctionPackage\database\seeders\PostSeeder',
             'Webfactor\WfBasicFunctionPackage\database\seeders\MediaSeeder',
             'Webfactor\WfBasicFunctionPackage\database\seeders\GallerySeeder',
+            'Webfactor\WfBasicFunctionPackage\database\seeders\CommentSeeder'
         ]
     ];
 

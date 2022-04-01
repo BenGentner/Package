@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text("excerpt");
             $table->text("body");
             $table->timestamp('published_at')->nullable();
+            $table->boolean("comments_allowed")->default(true);
 
             $table->foreign('category_id')
                 ->references('id')

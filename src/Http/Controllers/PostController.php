@@ -3,6 +3,7 @@
 namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Webfactor\WfBasicFunctionPackage\Models\post;
 
@@ -12,10 +13,11 @@ class PostController extends Controller
      * not sure if front end create, edit and so on is needed since nova will be used
      */
 
+
     public function index_api($post)
     {
         $post = Post::where("slug", $post)
-                        ->orwhere('id', $post)->first();
+                        ->orwhere('id', $post)->first()->load(["user", "comments", "category"]);
         if(!$post)
             abort(404);
 
