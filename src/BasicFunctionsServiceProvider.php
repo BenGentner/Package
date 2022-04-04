@@ -38,9 +38,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     }
     /*
          * TODO:
-     *      - IMPORTANT:
-     *          -auth improvements (middleware web needed) => group routes
-     *          - ui changes because of master
             - api routes => return json
             - view routes => return blade views
             => maybe separate controller and publish those with the view routes
@@ -49,16 +46,19 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - check if all() methods make sense (or render the first 10 and then the next 10 ....)
             - check which controllers, ... should be published and then add them to publish (and) install command
             - roles?
-            - comments (everything xD, has to have front-end create, edit, ... views(/vues) and controller methods)
             - comments can be deactivated!
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
             - basic create, ... view?
             - update nova (new columns and comments)
             - comments on comments ?
-            - install command with register service provider (example install command laravel nova)
-            - check needed packages and add missing to require
+            - install command with register service provider (example install command laravel nova) (multiple service provider)
+            - check needed packages and add missing to require (of the package)
             - php .\artisan ui:auth needed! (maybe add to install, definitely add to read me)
+            - potential improvements to posts grid ( click event,...)
+            - login route in config (used in create comment.vue)
+            - flash messages (successful create/ edit comment,...) (maybe should be made by user?) https://laravel-news.com/building-a-flash-message-component-with-vue-js-and-tailwind-css
+            - gallery improvements
          */
     /**
      * Bootstrap services.

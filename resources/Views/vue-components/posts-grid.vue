@@ -1,5 +1,6 @@
 <template>
     <div>
+        <category-dropdown :category="category" @selectedCategory="updateCategory"></category-dropdown>
 <!--        post preview-->
          <post-preview
              v-for="post in posts"
@@ -11,18 +12,32 @@
 
 <script>
 import PostPreview from "./post-preview";
+import CategoryDropdown from "./category/category-dropdown.vue"
 export default {
     name: "posts-grid.vue",
-    components: {PostPreview},
+    components: {CategoryDropdown, PostPreview},
     data() {
         return {
-            posts: []
+            posts: [],
+            category: null,
         }
     },
 
     created() {
-        axios.get("/api/posts/")
-            .then(response => this.posts = response.data);
+        this.getPosts()
+
+    },
+    methods: {
+        getPosts() {
+            axios.get("/api/posts/", {
+                params: {category: this.category?.id}})
+                .then(response => this.posts = response.data)
+
+        },
+        updateCategory (category) {
+            this.category = category;
+            this.getPosts();
+        }
     }
 }
 </script>

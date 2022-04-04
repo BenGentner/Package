@@ -5,6 +5,8 @@ namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Webfactor\WfBasicFunctionPackage\Models\Category;
 use Webfactor\WfBasicFunctionPackage\Models\post;
 
 class PostController extends Controller
@@ -19,7 +21,7 @@ class PostController extends Controller
         $post = Post::where("slug", $post)
                         ->orwhere('id', $post)->first()->load(["user", "comments", "category"]);
         if(!$post)
-            abort(404);
+            abort(Response::HTTP_FORBIDDEN);
 
         return $post;
     }
@@ -32,10 +34,14 @@ class PostController extends Controller
         $post = $this->index_api($post);
         return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
     }
-    public function show_api()
+    public function show_api(Request $request)
     {
         // return default view with all posts
-        return Post::all()->load(["user", "category"]);
+        $category = $request->category;
+//        print_r($category);
+        if(!$category)
+            return Post::all()->load(["user", "category"]);
+        return Post::where("category_id", $category)->get()->load(["user", "category"]);
         /*
          * TODO:
          *  -check if all posts should be loaded or just a couple (extra method needed)

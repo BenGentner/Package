@@ -1,4 +1,4 @@
-@extends("master")
+@extends("/Webfactor/WfBasicFunctionPackage/views/master")
 
 @section("content")
     <div id="app">

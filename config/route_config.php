@@ -39,5 +39,10 @@
         /*
          * path to store a comment
          */
-        "store_comment" => '/api/' . 'post/{key}/' . 'comment/'
+        "store_comment" => '/api/' . 'post/{key}/' . 'comment/store/',
+
+        /*
+         * path to update a comment
+         */
+        "update_comment" => '/api/' . 'comment/{key}/' . 'comment/update/'
     ];

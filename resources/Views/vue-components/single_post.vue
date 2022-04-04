@@ -1,6 +1,7 @@
 <template>
     <article class="m-4 border-4 p-2 rounded-3xl">
         <h1 v-text="$attrs.data.title"></h1>
+        <h2 v-text="$attrs.data.category.name"></h2>
         <p  v-html="$attrs.data.body"></p>
         <h2 class="mt-3">Comments: </h2>
         <create_comment
