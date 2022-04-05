@@ -3,12 +3,20 @@
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
+use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Spatie\MediaLibrary\HasMedia;
+use ZiffMedia\NovaSelectPlus\FieldServiceProvider;
 use ZiffMedia\NovaSelectPlus\SelectPlus;
 
 class Gallery extends Resource
@@ -50,8 +58,9 @@ class Gallery extends Resource
             Text::make("slug", "slug"),
             Textarea::make("description", "description"),
             BelongsTo::make("user"),
-            BelongsTo::make("media", "header_image", Media::class),
-            SelectPlus::make("media", 'media', Media::class)->label('title'),
+            BelongsTo::make("Header", "header_image", Media::class),
+//            SelectPlus::make('media', 'media', Media::class)->label('title'),
+            Images::make('Multiple files', 'multiple_files'),
         ];
     }
 

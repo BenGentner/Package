@@ -10,6 +10,11 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "ziffmedia/nova-select-plus": "^1.0"
-    }
+        "ziffmedia/nova-select-plus": "^1.0",
+        "laravel/nova": "3.*"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
 }

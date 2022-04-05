@@ -4,9 +4,11 @@ namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use ZiffMedia\NovaSelectPlus\SelectPlus;
@@ -25,7 +27,7 @@ class Media extends Resource
      *
      * @var string
      */
-    public static $title = 'title';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -49,7 +51,7 @@ class Media extends Resource
             Text::make("title", "title"),
             Text::make("slug", "slug"),
             BelongsTo::make("user"),
-            File::make('image', 'path')->disk('public'),
+            Avatar::make('image', 'path')->disk('public')->prunable(),
             SelectPlus::make('gallery', 'galleries')->label('title'),
         ];
     }

@@ -21,6 +21,7 @@ Route::middleware('web')->group(function () {
 
 //Return one Gallery with all images (or a specific amount that gets displayed at ones)
     Route::get("/api/" .config("wf-routes.gallery_path"), [GalleryController::class, 'index_api']);
+    Route::get(config("wf-routes.gallery_path"), [GalleryController::class, 'index_show']);
 
 //Returns one image
     Route::get("/api/" . config("wf-routes.medium_path"), [MediaController::class, 'index_api']);

@@ -14,11 +14,17 @@ class MediaSeeder extends Seeder
      */
     public function run()
     {
-        Media::create([
-           "title" => "test",
-           "slug" => "test",
-            "user_id" => 1,
-            "path" => "IxrOTURdc38QmfwTFM5BndhEFUGf1zuvsucLmhXz.jpg"
-        ]);
+//        Media::create([
+//           "title" => "witcher",
+//           "slug" => "witcher1",
+//            "user_id" => 1,
+//            "path" => "hhwPPuTPnQLVWo9b1rkw6rBncOcJ8gzaLy2ebUsO.jpg"
+//        ]);
+//        Media::create([
+//            "title" => "landschaft",
+//            "slug" => "landschaft1",
+//            "user_id" => 1,
+//            "path" => "bRGqjlJyAfV3XUm91kFcoVs6RsWobbOGQEZQFtws.jpg"
+//        ]);
     }
 }

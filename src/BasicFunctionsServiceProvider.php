@@ -59,6 +59,11 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - login route in config (used in create comment.vue)
             - flash messages (successful create/ edit comment,...) (maybe should be made by user?) https://laravel-news.com/building-a-flash-message-component-with-vue-js-and-tailwind-css
             - gallery improvements
+            - placeholder image
+            - check gallery and media seeder
+            - http://127.0.0.1:8000/storage/6/conversions/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365-thumb.jpg
+            - http://127.0.0.1:8000/storage/6/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365.jpg
+            - optimize frontend gallery on new media/gallery system
          */
     /**
      * Bootstrap services.
