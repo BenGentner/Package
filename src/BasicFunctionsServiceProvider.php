@@ -64,6 +64,8 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - http://127.0.0.1:8000/storage/6/conversions/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365-thumb.jpg
             - http://127.0.0.1:8000/storage/6/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365.jpg
             - optimize frontend gallery on new media/gallery system
+            - test gallery changes (especially header)
+            - optimize frontend
          */
     /**
      * Bootstrap services.

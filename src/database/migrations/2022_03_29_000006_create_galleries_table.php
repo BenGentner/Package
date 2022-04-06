@@ -27,10 +27,10 @@ class CreateGalleriesTable extends Migration
                 ->on('users')
                 ->onDelete('set null');
 
-            $table->foreign('header_image_id')
-                ->references('id')
-                ->on('media')
-                ->onDelete('set null');
+//            $table->foreign('header_image_id')
+//                ->references('id')
+//                ->on('media')
+//                ->onDelete('set null');
         });
     }
 

@@ -8,7 +8,7 @@
         </div>
         <div class="card-image">
             <figure class="image is-16by9">
-                <img :src="'./storage/' +$attrs.data.header_image.id + '/conversions/' + $attrs.data.header_image.file_name" alt="https://bulma.io/images/placeholders/640x360.png">
+                <img :src="this.url" alt="https://bulma.io/images/placeholders/640x360.png">
             </figure>
         </div>
         <div class="card-content">
@@ -26,11 +26,29 @@
 export default {
     name: "gallery_preview.vue",
 
+    data() {
+        return {
+            url: '',
+        }
+    },
+
     methods: {
         directToGallery()
         {
             location.href="/gallery/" + this.$attrs.data.slug + "/";
+        },
+        getUrl(image)
+        {
+            var path = '/./storage/' + image.id + '/conversions/';
+            var extension = image.file_name.substring(image.file_name.lastIndexOf('.'), image.file_name.length) || image.file_name
+            var thumbnail = image.name + "-thumb" + extension;
+
+            return path +thumbnail;
         }
+    },
+
+    created() {
+        this.url = this.getUrl(this.$attrs.data.header_image);
     }
 }
 </script>

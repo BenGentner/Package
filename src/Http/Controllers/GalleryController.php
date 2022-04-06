@@ -15,6 +15,7 @@ class GalleryController extends Controller
                     ->orWhere("id", $key)->first();
         if(!$gallery)
             abort(Response::HTTP_FORBIDDEN);
+
         return $gallery->load(['user', 'media']);
     }
 

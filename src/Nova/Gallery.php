@@ -58,9 +58,10 @@ class Gallery extends Resource
             Text::make("slug", "slug"),
             Textarea::make("description", "description"),
             BelongsTo::make("user"),
-            BelongsTo::make("Header", "header_image", Media::class),
-//            SelectPlus::make('media', 'media', Media::class)->label('title'),
+//            BelongsTo::make("Header", "header_image", Media::class),
             Images::make('Multiple files', 'multiple_files'),
+            Images::make('header', 'header'),
+
         ];
     }
 

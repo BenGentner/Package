@@ -3,6 +3,8 @@
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use http\Url;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\BelongsTo;
@@ -38,6 +40,21 @@ class Media extends Resource
         'id',
     ];
 
+    public function authorizedToDelete(Request $request)
+    {
+        return null;
+    }
+    public function authorizedToUpdate(Request $request)
+    {
+        return null;
+    }
+
+    public static function authorizedToCreate(Request $request)
+    {
+        return null;
+    }
+
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -48,13 +65,20 @@ class Media extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("title", "title"),
-            Text::make("slug", "slug"),
-            BelongsTo::make("user"),
-            Avatar::make('image', 'path')->disk('public')->prunable(),
-            SelectPlus::make('gallery', 'galleries')->label('title'),
+            Text::make("name", "name"),
+            Text::make("file_name", "file_name")->hideFromIndex(),
+            Avatar::make('Medium')->thumbnail(function () {
+                $path = "storage/" . $this->id . '/';
+                $files = scandir($path);
+                info($files[sizeof($files) -1 ]);
+
+                return  "/" . $path. $files[sizeof($files) -1 ];
+            }),
+
         ];
     }
+
+
 
     /**
      * Get the cards available for the request.
@@ -75,7 +99,9 @@ class Media extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+
+        ];
     }
 
     /**

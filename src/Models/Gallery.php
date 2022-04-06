@@ -16,6 +16,7 @@ class Gallery extends Model implements HasMedia
 
     use InteractsWithMedia;
 
+
     public function registerMediaConversions(Media|\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         $this->addMediaConversion('thumb')
@@ -25,7 +26,7 @@ class Gallery extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('main')->singleFile();
+        $this->addMediaCollection('header')->singleFile();
         $this->addMediaCollection('my_multi_collection');
     }
 
@@ -39,12 +40,34 @@ class Gallery extends Model implements HasMedia
     {
         return $this->belongsTo(User::class);
     }
+
     public function header_image()
     {
         return $this->belongsTo(Media::class);
     }
 
+    public static function boot()
+    {
+        parent::boot();
 
+
+        static::saved(function($gallery) {
+//            $gallery = Gallery::find($callback->id);
+//            info($gallery);
+//            sleep(5);
+//            info($gallery->getFirstMedia("header")?->id);
+//            info($gallery);
+//            if($gallery->header_image_id != $gallery->getFirstMedia("header")?->id)
+//            {
+//                $gallery->header_image_id =  $gallery->getFirstMedia("header")?->id;
+//                $gallery->save();
+//            }
+//            info($gallery);
+//            info($gallery->header_image_id);
+
+//            info("why");
+        });
+    }
 
 
 }
