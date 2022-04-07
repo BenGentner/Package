@@ -23,23 +23,26 @@
 </template>
 
 <script>
+import config from "./config";
+
 export default {
     name: "gallery_preview.vue",
 
     data() {
         return {
             url: '',
+            routes_url: null,
         }
     },
 
     methods: {
         directToGallery()
         {
-            location.href="/gallery/" + this.$attrs.data.slug + "/";
+            location.href=this.routes_url;
         },
         getUrl(image)
         {
-            var path = '/./storage/' + image.id + '/conversions/';
+            var path = './storage/' + image.id + '/conversions/';
             var extension = image.file_name.substring(image.file_name.lastIndexOf('.'), image.file_name.length) || image.file_name
             var thumbnail = image.name + "-thumb" + extension;
 
@@ -49,6 +52,10 @@ export default {
 
     created() {
         this.url = this.getUrl(this.$attrs.data.header_image);
+
+        config.get("gallery_path")
+            .then(response => this.routes_url = response.replace('{key}', this.$attrs.data.slug))
+            .catch(error => console.error(error));
     }
 }
 </script>

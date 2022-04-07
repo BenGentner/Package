@@ -2,6 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Http\Controllers as controllers;
 
 
@@ -25,10 +26,10 @@ Route::middleware('web')->group(function () {
      * Post
      */
 
-    Route::get('/api/posts/', [controllers\api\PostController::class, 'show']);
+    Route::get('/api/'. config("wf-routes.multiple_posts_path"), [controllers\api\PostController::class, 'show']);
     Route::get('/api/'. config("wf-routes.single_post_path"), [controllers\api\PostController::class, 'index']);
 
-    Route::get('/posts/', [controllers\view\PostController::class, 'show']);
+    Route::get(config("wf-routes.multiple_posts_path"), [controllers\view\PostController::class, 'show']);
     Route::get(config("wf-routes.single_post_path"), [controllers\view\PostController::class, 'index']);
 
     /**
@@ -54,10 +55,10 @@ Route::get("api/categories", [controllers\api\CategoryController::class, 'show']
 
 
 /**
- * route to get config values
+ * route to get config values (for vue components)
  */
 Route::get('/url/{key}/', function ($key) {
-    return config("wf-routes.$key");
+    return config("wf-routes.$key") ? config("wf-routes.$key") : abort(Response::HTTP_NOT_FOUND);
 });
 
 

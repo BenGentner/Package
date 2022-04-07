@@ -13,21 +13,12 @@ class MediaController extends Controller
     {
         /**
          * TODO:
-         *  - tests (new where and abort part)
-         *  - media return anpassen (redirect("./storage/$media->path"))
+         *  - get by name (maybe not unique)
          */
-        $media = Media::where("slug", $key)
-                        ->orwhere("id", $key)->first();
+        $media = Media::where("id", $key)->first();
         if(!$media)
             abort(404);
 
         return $media;
     }
-
-    public function testing()
-    {
-//        return  "hi";
-        return view("WfFunctions::test");
-    }
-
 }

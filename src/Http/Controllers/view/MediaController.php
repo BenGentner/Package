@@ -9,25 +9,5 @@ use Webfactor\WfBasicFunctionPackage\Models\Media;
 
 class MediaController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\MediaController
 {
-    public function index_api($key)
-    {
-        /**
-         * TODO:
-         *  - tests (new where and abort part)
-         *  - media return anpassen (redirect("./storage/$media->path"))
-         */
-        $media = Media::where("slug", $key)
-                        ->orwhere("id", $key)->first();
-        if(!$media)
-            abort(404);
-
-        return $media;
-    }
-
-    public function testing()
-    {
-//        return  "hi";
-        return view("WfFunctions::test");
-    }
 
 }

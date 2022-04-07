@@ -21,20 +21,8 @@ class GalleryController extends Controller
 
         return $gallery;
     }
-
-    public function index_show($key)
-    {
-        $gallery = $this->index_api($key);
-//        ddd($gallery);
-        return view("Webfactor/WfBasicFunctionPackage/views/single_gallery", compact("gallery"));
-    }
-
-    public function show_api()
+    public function show()
     {
         return Gallery::all()->load(['user', 'header_image']);
-    }
-    public function show_view()
-    {
-        return view("Webfactor/WfBasicFunctionPackage/views/galleries");
     }
 }

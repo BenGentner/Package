@@ -21,7 +21,6 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
          * TODO:
          *  - view improvements
          */
-
         $post = parent::index($post);
         return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
     }
@@ -45,7 +44,7 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 //    }
 
 
-    public function show()
+    public function show(Request $request)
     {
         return view("Webfactor/WfBasicFunctionPackage/views/posts");
     }

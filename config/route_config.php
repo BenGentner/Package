@@ -1,48 +1,63 @@
 <?php
     return [
-        /*
+        /**
          * ----------------------------------------
-         *
+         *         Route Configuration
          * ----------------------------------------
          *
          */
 
 
         /*
-           *-----------------------------
-           *         Gallery Paths
-           *-----------------------------
-           */
+        *-----------------------------
+        *         Gallery Paths
+        *-----------------------------
+        */
 
-        /*
-         * path  all galleries:
-         */
 
+        // path  all galleries:
         "galleries_path" => "galleries/",
 
-        /*
-         * path a single gallery with images
-         */
 
+         //path a single gallery with images
         "gallery_path" => "gallery/{key}/",
 
+
         /*
-         * path to a single medium (image)
-         */
+        *-----------------------------
+        *         Medium Paths
+        *-----------------------------
+        */
+
+         // path to a single medium (image)
         "medium_path" => "media/{key}/",
 
+
         /*
-         * path to a single post
-         */
+        *-----------------------------
+        *         Post Paths
+        *-----------------------------
+        */
+
+        // path to a single post
         "single_post_path" => "post/{key}/",
 
-        /*
-         * path to store a comment
-         */
-        "store_comment" => '/api/' . 'post/{key}/' . 'comment/store/',
+
+        // path to multiple posts
+        "multiple_posts_path" => "posts/",
+
 
         /*
-         * path to update a comment
-         */
+        *-----------------------------
+        *         Comment Paths
+        *-----------------------------
+        */
+
+        // path to store a comment
+        "store_comment" => '/api/' . 'post/{key}/' . 'comment/store/',
+
+
+        // path to update a comment
         "update_comment" => '/api/' . 'comment/{key}/' . 'comment/update/'
+
     ];

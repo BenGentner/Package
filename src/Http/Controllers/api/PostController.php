@@ -25,15 +25,6 @@ class PostController extends Controller
 
         return $post;
     }
-    public function index_view($post)
-    {
-        /*
-         * TODO:
-         *  - view improvements
-         */
-        $post = $this->index_api($post);
-        return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
-    }
 
     public function show(Request $request)
     {
@@ -49,13 +40,6 @@ class PostController extends Controller
          *  -check if all posts should be loaded or just a couple (extra method needed)
          */
     }
-
-    public function show_view()
-    {
-        return view("Webfactor/WfBasicFunctionPackage/views/posts");
-    }
-
-
 
     public function create()
     {

@@ -10,6 +10,7 @@
 
 </template>
 <script>
+import config from "./config.js"
 export default {
     name: "post-preview",
 
@@ -23,8 +24,9 @@ export default {
     },
 
     created() {
-        axios.get("/url/single_post_path/")
-            .then(response => this.post_url = response.data.replace('{key}/', ''));
+        config.get("single_post_path")
+            .then(response => this.post_url = response.replace('{key}/', ''))
+            .catch(error => console.error(error));
     }
 }
 </script>

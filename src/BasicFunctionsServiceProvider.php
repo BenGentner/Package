@@ -38,38 +38,33 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     }
     /*
          * TODO:
-            - api routes => return json
+            - api routes => return json (maybe more routes)
             - view routes => return blade views
-            => maybe separate controller and publish those with the view routes
             - package read me
-            - clean up !!!
+            - clean up everything!!!
+            - clean up inserts
             - check if all() methods make sense (or render the first 10 and then the next 10 ....)
             - check which controllers, ... should be published and then add them to publish (and) install command
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
             - basic create, ... view?
-            - update nova (new columns and comments)
             - comments on comments ?
             - install command with register service provider (example install command laravel nova) (multiple service provider)
             - check needed packages and add missing to require (of the package)
             - php .\artisan ui:auth needed! (maybe add to install, definitely add to read me)
             - potential improvements to posts grid ( click event,...)
-            - login route in config (used in create comment.vue)
+            - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
             - flash messages (successful create/ edit comment,...) (maybe should be made by user?) https://laravel-news.com/building-a-flash-message-component-with-vue-js-and-tailwind-css
-            - gallery improvements
             - placeholder image
-            - check gallery and media seeder
-            - http://127.0.0.1:8000/storage/6/conversions/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365-thumb.jpg
-            - http://127.0.0.1:8000/storage/6/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365.jpg
-            - optimize frontend gallery on new media/gallery system
-            - test gallery changes (especially header)
-            - optimize frontend (galleries)
             - make posts prettier (single post, comment, create comment)
             - gallery header image foreign key
-            - gallery media upload message
-            - media trigger insert url (maybe think about it)
-            - clean up inserts
+            - gallery media upload message (that it takes a bit)
+            - media trigger insert url (maybe think about it) (add column to media that has the route to the picture)
+            - or/and
+            - improve get path of media (especially front end) maybe ajax request to media controller (currently too much logic in front-end)
             - nova group resources
+            - tests... a lot of them
+
          */
     /**
      * Bootstrap services.
@@ -90,7 +85,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         /*
          * TODO:
-         *  - currently using published views => we don't have to load them
+         *  - currently using published views => don't have to load them
          *  - just load views that won't be published
          */
 //        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');

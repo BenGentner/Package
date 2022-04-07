@@ -16,6 +16,7 @@
 
 <script>
 import Form from "./Form.js"
+import config from "../config";
 export default {
     props: ["post", "body", "type"],
     name: "comment_form.vue",
@@ -31,15 +32,16 @@ export default {
     created() {
         if(this.type === "create")
         {
-            axios.get("/url/store_comment/")
-                .then(response => this.post_url = response.data.replace('{key}', this.post));
+            config.get("store_comment")
+                .then(response => this.post_url = response.replace('{key}', this.post))
+                .catch(error => console.error(error));
         }
         else if(this.type === "update")
         {
-            axios.get("/url/update_comment/")
-                .then(response => this.post_url = response.data.replace('{key}', this.post));
+            config.get("update_comment")
+                .then(response => this.post_url = response.replace('{key}', this.post))
+                .catch(error => console.error(error));
         }
-
         axios.get("/current_user/")
             .then(response => this.user = response.data);
     },

@@ -13,6 +13,7 @@
 <script>
 import PostPreview from "./post-preview";
 import CategoryDropdown from "./category/category-dropdown.vue"
+import config from "./config.js"
 export default {
     name: "posts-grid.vue",
     components: {CategoryDropdown, PostPreview},
@@ -20,16 +21,20 @@ export default {
         return {
             posts: [],
             category: null,
+            posts_url: null,
         }
     },
 
     created() {
-        this.getPosts()
-
+        config.get("multiple_posts_path")
+            .then((response) => {
+                this.posts_url = response;
+                this.getPosts();
+            }).catch(error => console.error(error))
     },
     methods: {
         getPosts() {
-            axios.get("/api/posts/", {
+            axios.get("/api/" +  this.posts_url, {
                 params: {category: this.category?.id}})
                 .then(response => this.posts = response.data)
 
