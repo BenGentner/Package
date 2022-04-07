@@ -44,8 +44,10 @@ class Category extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("name", "name"),
-            Text::make("slug", "slug"),
+            Text::make("name", "name")->rules('required', "max:255"),
+            Text::make("slug", "slug")->rules('required', "max:255")
+                ->creationRules("unique:categories,slug")
+                ->updateRules('unique:categories,slug,{{resourceId}}'),
         ];
     }
 

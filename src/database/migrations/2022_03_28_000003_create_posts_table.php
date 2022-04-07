@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger("category_id")->nullable();
-            $table->unsignedBigInteger("user_id");
             $table->string("title");
             $table->string("slug")->unique();
+            $table->unsignedBigInteger("category_id")->nullable();
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("creator_user_id")->nullable();
             $table->text("excerpt");
             $table->text("body");
+            $table->boolean("commentable")->default(true);
             $table->timestamp('published_at')->nullable();
-            $table->boolean("comments_allowed")->default(true);
+            $table->timestamps();
 
             $table->foreign('category_id')
                 ->references('id')
@@ -34,6 +35,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
+            $table->foreign("creator_user_id")
+                ->references("id")
+                ->on("users")
+                ->onDelete("set null");
         });
     }
 

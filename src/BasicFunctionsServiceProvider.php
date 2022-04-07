@@ -45,8 +45,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - clean up !!!
             - check if all() methods make sense (or render the first 10 and then the next 10 ....)
             - check which controllers, ... should be published and then add them to publish (and) install command
-            - roles?
-            - comments can be deactivated!
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
             - basic create, ... view?
@@ -65,7 +63,11 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - http://127.0.0.1:8000/storage/6/fotograf-thomas-weber-oldenburg-landschaftsfotos-naturfotos-002-2048x1365.jpg
             - optimize frontend gallery on new media/gallery system
             - test gallery changes (especially header)
-            - optimize frontend
+            - optimize frontend (galleries)
+            - make posts prettier (single post, comment, create comment)
+            - gallery header image foreign key
+            - gallery media upload message
+            - media trigger insert url (maybe think about it)
          */
     /**
      * Bootstrap services.

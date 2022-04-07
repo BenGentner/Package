@@ -3,8 +3,10 @@
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
+use App\Nova\User;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -26,7 +28,7 @@ class Post extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -47,14 +49,30 @@ class Post extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("title", "title"),
-            Text::make("slug", "slug"),
-            BelongsTo::make("category"),
-            //maybe hide user when creating / updating and auto set it
-            BelongsTo::make("user"),
-            Text::make("excerpt", "excerpt"),
-            Textarea::make("body", "body"),
-            SelectPlus::make("tags", "tags")
+            Text::make("Title", "title")->rules("max:255"),
+            Text::make("Slug", "slug")->rules("max:255")->hideFromIndex()
+                ->creationRules("unique:posts,slug")
+                ->updateRules('unique:posts,slug,{{resourceId}}'),
+            BelongsTo::make("Category", "category"),
+            BelongsTo::make("User", "user")->exceptOnForms(),
+            BelongsTo::make("Creator", "creator", User::class)->exceptOnForms(),
+            Text::make("Excerpt", "excerpt")
+                ->displayUsing(function ($excerpt) {
+                    $preview = strip_tags(substr($excerpt, 0, 30));
+                    $preview = $preview . "...";
+                    return $preview;
+                })->onlyOnIndex(),
+            Textarea::make("Excerpt", "excerpt")->rules("max:65535", "required")
+                ->displayUsing(function ($excerpt){
+                    return strip_tags($excerpt);
+                })
+                ->hideFromIndex(),
+            Textarea::make("Body", "body")->rules("max:65535", "required")
+                ->displayUsing(function ($body) {
+                    return strip_tags($body);
+                }),
+            Boolean::make("commentable")->default(true),
+            SelectPlus::make("Tags", "tags")
         ];
     }
 

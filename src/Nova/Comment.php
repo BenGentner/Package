@@ -3,8 +3,12 @@
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
+use App\Nova\User;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Comment extends Resource
@@ -42,6 +46,14 @@ class Comment extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
+            BelongsTo::make("user")->exceptOnForms(),
+            BelongsTo::make("post"),
+            TextArea::make("body")->displayUsing(function ($id) {
+                $preview = strip_tags(substr($id, 0, 30));
+                return $preview . "...";
+            })->onlyOnIndex(),
+            TextArea::make("body")->rules("max:65535")->hideFromIndex(),
+
         ];
     }
 

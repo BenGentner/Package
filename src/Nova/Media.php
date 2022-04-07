@@ -65,8 +65,9 @@ class Media extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("name", "name"),
-            Text::make("file_name", "file_name")->hideFromIndex(),
+            Text::make("Name", "name"),
+            Text::make("Name of the file:", "file_name")->hideFromIndex(),
+            Text::make("Name of the collection", "collection_name")->hideFromIndex(),
             Avatar::make('Medium')->thumbnail(function () {
                 $path = "storage/" . $this->id . '/';
                 $files = scandir($path);

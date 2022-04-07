@@ -20,21 +20,16 @@ class Gallery extends Model implements HasMedia
     public function registerMediaConversions(Media|\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(130)
-            ->height(130);
+            ->width(640)
+            ->height(360);
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('header')->singleFile();
-        $this->addMediaCollection('my_multi_collection');
+        $this->addMediaCollection('images');
     }
 
-
-//    public function media()
-//    {
-//        return $this->belongsToMany(media::class);
-//    }
 
     public function user()
     {
@@ -46,28 +41,28 @@ class Gallery extends Model implements HasMedia
         return $this->belongsTo(Media::class);
     }
 
-    public static function boot()
+    public function creator()
+    {
+        return $this->belongsTo(User::class, "creator_user_id");
+    }
+
+    protected static function boot()
     {
         parent::boot();
 
+        self::saved(function ($callback) {
+            if($callback->user_id != auth()->user()?->id)
+            {
+                if(auth()->user()?->id)
+                {
+                    $callback->user_id = auth()->user()?->id;
+                    $callback->save();
+                }
+            }
+        });
 
-        static::saved(function($gallery) {
-//            $gallery = Gallery::find($callback->id);
-//            info($gallery);
-//            sleep(5);
-//            info($gallery->getFirstMedia("header")?->id);
-//            info($gallery);
-//            if($gallery->header_image_id != $gallery->getFirstMedia("header")?->id)
-//            {
-//                $gallery->header_image_id =  $gallery->getFirstMedia("header")?->id;
-//                $gallery->save();
-//            }
-//            info($gallery);
-//            info($gallery->header_image_id);
-
-//            info("why");
+        self::created(function ($callback) {
+            $callback->creator_user_id = auth()->user()?->id;
         });
     }
-
-
 }

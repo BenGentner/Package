@@ -13,6 +13,10 @@ class GalleryMedia extends Migration
      */
     public function up()
     {
+        /*
+         * TODO:
+         *  - still needed?
+         */
         Schema::create('gallery_media', function (Blueprint $table) {
             $table->id();
             $table->timestamps();

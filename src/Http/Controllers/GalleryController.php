@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Gallery;
+use Webfactor\WfBasicFunctionPackage\Models\Media;
 
 class GalleryController extends Controller
 {
@@ -16,12 +17,15 @@ class GalleryController extends Controller
         if(!$gallery)
             abort(Response::HTTP_FORBIDDEN);
 
-        return $gallery->load(['user', 'media']);
+        $gallery->images = Media::where("model_id", $gallery->id)->where("collection_name", "images")->get();
+
+        return $gallery;
     }
 
     public function index_show($key)
     {
         $gallery = $this->index_api($key);
+//        ddd($gallery);
         return view("Webfactor/WfBasicFunctionPackage/views/single_gallery", compact("gallery"));
     }
 

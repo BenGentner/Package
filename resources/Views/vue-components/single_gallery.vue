@@ -1,10 +1,10 @@
 <template>
     <div>
-        <article class="card w-1/5 float-left m-2" v-for="medium in this.$attrs.data.media">
+        <article class="card w-1/5 float-left m-2" v-for="image in this.$attrs.data.images">
             <div class="card-image">
                 <figure class="image is-16by9">
-                    <a :href="'/storage/' + medium.id + '/' + medium.file_name">
-                        <img :src="getUrl(medium)" rel="test" alt="https://bulma.io/images/placeholders/640x360.png" loading="lazy">
+                    <a :href="'/storage/' + image.id + '/' + image.file_name">
+                        <img :src="getUrl(image)" rel="test" alt="https://bulma.io/images/placeholders/640x360.png" loading="lazy">
                     </a>
 
                 </figure>

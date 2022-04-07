@@ -10,7 +10,30 @@
             @success="success">
         </edit_comment>
     </article>
+
+
+<!--    <article class="media">-->
+<!--        <div class="media-content">-->
+<!--            <div class="content">-->
+<!--                <p>-->
+<!--                    <strong>comment user</strong>-->
+<!--                    <br>-->
+<!--                    comment body-->
+<!--                    <br>-->
+<!--                    <small><a>edit</a> 2 hrs</small>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </article>-->
+
+<!--    <article class="media">-->
+<!--        another comment-->
+<!--    </article>-->
+
 </template>
+
+
+
 
 <script>
 import edit_comment from "./edit-comment.vue"

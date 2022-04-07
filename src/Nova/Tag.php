@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use ZiffMedia\NovaSelectPlus\SelectPlus;
 
 class Tag extends Resource
 {
@@ -43,7 +44,8 @@ class Tag extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("name", "name"),
+            Text::make("Name", "name")->rules("required", "max:255"),
+            SelectPlus::make("Posts", "posts")->label("title"),
         ];
     }
 

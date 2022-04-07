@@ -27,4 +27,20 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::saved(function ($callback) {
+            if($callback->user_id != auth()->user()?->id)
+            {
+                if(auth()->user()?->id)
+                {
+                    $callback->user_id = auth()->user()?->id;
+                    $callback->save();
+                }
+            }
+        });
+    }
 }

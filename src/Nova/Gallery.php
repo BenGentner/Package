@@ -3,21 +3,15 @@
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
 use App\Nova\Resource;
-use DmitryBubyakin\NovaMedialibraryField\Fields\Medialibrary;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use App\Nova\User;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
+use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Spatie\MediaLibrary\HasMedia;
-use ZiffMedia\NovaSelectPlus\FieldServiceProvider;
-use ZiffMedia\NovaSelectPlus\SelectPlus;
+
 
 class Gallery extends Resource
 {
@@ -54,14 +48,16 @@ class Gallery extends Resource
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
-            Text::make("title", "title"),
-            Text::make("slug", "slug"),
-            Textarea::make("description", "description"),
-            BelongsTo::make("user"),
-//            BelongsTo::make("Header", "header_image", Media::class),
-            Images::make('Multiple files', 'multiple_files'),
-            Images::make('header', 'header'),
-
+            Text::make("Title", "title")->rules("max:255"),
+            Text::make("Slug", "slug")
+                ->rules("max:255")
+                ->creationRules("unique:galleries,slug")
+                ->updateRules('unique:galleries,slug,{{resourceId}}'),
+            Textarea::make("Description", "description")->rules("max:65535", "nullable"),
+            BelongsTo::make("user")->exceptOnForms(),
+            BelongsTo::make("creator", "creator", User::class)->exceptOnForms(),
+            Images::make('Header Image', 'header'),
+            Images::make('Images', 'images'),
         ];
     }
 

@@ -9,7 +9,21 @@
         </comment_form>
     </div>
 
-
+<!--    <article class="media">-->
+<!--        username-->
+<!--        <div class="media-content">-->
+<!--            <div class="field">-->
+<!--                <p class="control">-->
+<!--                    <textarea class="textarea" placeholder="Add a comment..."></textarea>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="field">-->
+<!--                <p class="control">-->
+<!--                    <button class="button">Post comment</button>-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </article>-->
 
 </template>
 
