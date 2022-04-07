@@ -2,12 +2,7 @@
 
 
 use Illuminate\Support\Facades\Route;
-use Webfactor\WfBasicFunctionPackage\Http\Controllers\CategoryController;
-use Webfactor\WfBasicFunctionPackage\Http\Controllers\CommentController;
-use Webfactor\WfBasicFunctionPackage\Http\Controllers\GalleryController;
-use Webfactor\WfBasicFunctionPackage\Http\Controllers\MediaController;
-use Webfactor\WfBasicFunctionPackage\Http\Controllers\PostController;
-
+use Webfactor\WfBasicFunctionPackage\Http\Controllers as controllers;
 
 
 Route::middleware('web')->group(function () {
@@ -16,39 +11,46 @@ Route::middleware('web')->group(function () {
      */
 
 //Return all Galleries (maybe with on image (header))
-    Route::get(config("wf-routes.galleries_path"), [GalleryController::class, 'show_view']);
-    Route::get("/api/" . config("wf-routes.galleries_path"), [GalleryController::class, 'show_api'] );
+    Route::get(config("wf-routes.galleries_path"), [controllers\view\GalleryController::class, 'show']);
+    Route::get("/api/" . config("wf-routes.galleries_path"), [controllers\api\GalleryController::class, 'show'] );
 
 //Return one Gallery with all images (or a specific amount that gets displayed at ones)
-    Route::get("/api/" .config("wf-routes.gallery_path"), [GalleryController::class, 'index_api']);
-    Route::get(config("wf-routes.gallery_path"), [GalleryController::class, 'index_show']);
+    Route::get("/api/" .config("wf-routes.gallery_path"), [controllers\api\GalleryController::class, 'index']);
+    Route::get(config("wf-routes.gallery_path"), [controllers\view\GalleryController::class, 'index']);
 
 //Returns one image
-    Route::get("/api/" . config("wf-routes.medium_path"), [MediaController::class, 'index_api']);
+    Route::get("/api/" . config("wf-routes.medium_path"), [controllers\api\MediaController::class, 'index']);
 
     /**
      * Post
      */
 
-    Route::get('/api/posts/', [PostController::class, 'show_api']);
-    Route::get('/api/'. config("wf-routes.single_post_path"), [PostController::class, 'index_api']);
+    Route::get('/api/posts/', [controllers\api\PostController::class, 'show']);
+    Route::get('/api/'. config("wf-routes.single_post_path"), [controllers\api\PostController::class, 'index']);
 
-    Route::get('/posts/', [PostController::class, 'show_view']);
-    Route::get(config("wf-routes.single_post_path"), [PostController::class, 'index_view']);
+    Route::get('/posts/', [controllers\view\PostController::class, 'show']);
+    Route::get(config("wf-routes.single_post_path"), [controllers\view\PostController::class, 'index']);
 
     /**
      * Comment
      */
 
-    Route::post(config("wf-routes.store_comment"), [CommentController::class, 'store']);
-    Route::post(config("wf-routes.update_comment"), [CommentController::class, 'update']);
+    Route::post(config("wf-routes.store_comment"), [controllers\api\CommentController::class, 'store']);
+    Route::post(config("wf-routes.update_comment"), [controllers\api\CommentController::class, 'update']);
 
     Route::get("/current_user/", function () {
         return auth()->user();
     });
+
+    /**
+     * TODO next:
+     *  - routes with config
+     *  - clean up controllers
+     *  - add missing api routes
+     */
 });
 
-Route::get("api/categories", [CategoryController::class, 'show']);
+Route::get("api/categories", [controllers\api\CategoryController::class, 'show']);
 
 
 /**

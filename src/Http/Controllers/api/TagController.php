@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
+namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

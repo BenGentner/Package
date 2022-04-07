@@ -1,13 +1,13 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
+namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Webfactor\WfBasicFunctionPackage\Models\Media;
 
-class MediaController extends Controller
+class MediaController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\MediaController
 {
     public function index_api($key)
     {

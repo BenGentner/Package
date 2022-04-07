@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
+namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Comment;
 use Webfactor\WfBasicFunctionPackage\Models\Post;
 
-class CommentController extends Controller
+class CommentController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\CommentController
 {
     public function store($key)
     {

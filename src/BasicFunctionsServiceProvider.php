@@ -68,6 +68,8 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - gallery header image foreign key
             - gallery media upload message
             - media trigger insert url (maybe think about it)
+            - clean up inserts
+            - nova group resources
          */
     /**
      * Bootstrap services.

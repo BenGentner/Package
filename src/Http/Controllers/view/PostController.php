@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
+namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -9,46 +9,43 @@ use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Category;
 use Webfactor\WfBasicFunctionPackage\Models\post;
 
-class PostController extends Controller
+class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\PostController
 {
     /**
      * not sure if front end create, edit and so on is needed since nova will be used
      */
 
-
-    public function index_api($post)
-    {
-        $post = Post::where("slug", $post)
-                        ->orwhere('id', $post)->first()->load(["user", "comments", "category"]);
-        if(!$post)
-            abort(Response::HTTP_FORBIDDEN);
-
-        return $post;
-    }
-    public function index_view($post)
+    public function index($post)
     {
         /*
          * TODO:
          *  - view improvements
          */
-        $post = $this->index_api($post);
+
+        $post = parent::index($post);
         return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
     }
-    public function show_api(Request $request)
-    {
-        // return default view with all posts
-        $category = $request->category;
-//        print_r($category);
-        if(!$category)
-            return Post::all()->load(["user", "category"]);
-        return Post::where("category_id", $category)->get()->load(["user", "category"]);
-        /*
-         * TODO:
-         *  -check if all posts should be loaded or just a couple (extra method needed)
-         */
-//        return Post::latest()->paginate(2);
-    }
-    public function show_view()
+
+    /**
+     *  TODO:
+     *      -can be removed when tested
+     *      - Moved to own controller:
+     *
+     */
+//    public function show_api(Request $request)
+//    {
+//        //just posts with a specific category
+//        $category = $request->category;
+//        if($category)
+//            return Post::where("category_id", $category)->get()->load(["user", "category"]);
+//
+//        //all posts
+//        return Post::all()->load(["user", "category"]);
+//
+//    }
+
+
+    public function show()
     {
         return view("Webfactor/WfBasicFunctionPackage/views/posts");
     }

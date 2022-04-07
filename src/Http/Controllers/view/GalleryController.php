@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers;
+namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,21 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 use Webfactor\WfBasicFunctionPackage\Models\Media;
 
-class GalleryController extends Controller
+class GalleryController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\GalleryController
 {
-    public function index_api($key)
-    {
-        $gallery = Gallery::where("title", $key)
-                    ->orWhere("id", $key)->first();
-        if(!$gallery)
-            abort(Response::HTTP_FORBIDDEN);
-
-        $gallery->images = Media::where("model_id", $gallery->id)->where("collection_name", "images")->get();
-
-        return $gallery;
-    }
-
-    public function index_show($key)
+    public function index($key)
     {
         $gallery = $this->index_api($key);
 //        ddd($gallery);
@@ -33,7 +21,7 @@ class GalleryController extends Controller
     {
         return Gallery::all()->load(['user', 'header_image']);
     }
-    public function show_view()
+    public function show()
     {
         return view("Webfactor/WfBasicFunctionPackage/views/galleries");
     }
