@@ -1,5 +1,5 @@
 {
-    "name": "webfactor/wf_basic_function_package",
+    "name": "webfactor_project/wf_basic_function_package",
     "description": "A package to add often needed, basic functions to a laravel project",
     "type": "library",
     "authors": [
