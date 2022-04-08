@@ -43,16 +43,26 @@ class InstallCommand extends Command
             '--force' => true,
         ]);
 
-//        echo "Compiling assets! Please stand by!";
-//
-//        $process = new Process(["npm", "run", "dev"], __DIR__);
-//        $process->run();
-//
-//        if(!$process->isSuccessful()) {
-//            throw new ProcessFailedException($process);
-//        }
-//
-//        echo $process->getOutput();
+        $process = new Process(["npm", "install"], __DIR__);
+        $process->run();
+
+        if(!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        echo $process->getOutput();
+
+
+        echo "Compiling assets! Please stand by!";
+
+        $process = new Process(["npm", "run", "dev"], __DIR__);
+        $process->run();
+
+        if(!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        echo $process->getOutput();
 
         echo "publishing package app.js";
 
