@@ -15,12 +15,14 @@
         "ebess/advanced-nova-media-library": "^3.8"
     },
     "autoload": {
-
+        "psr-4": {
+            "Webfactor\\WfBasicFunctionPackage\\" : "src/"
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Webfactor\\WfBasicFunctionPackage\\src\\BasicFunctionsServiceProvider"
+                "Webfactor\\WfBasicFunctionPackage\\BasicFunctionsServiceProvider"
             ]
         }
     },
