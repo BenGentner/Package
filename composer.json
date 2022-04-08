@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Webfactor\\WfBasicFunctionPackage\\BasicFunctionsServiceProvider"
+                "Webfactor\\WfBasicFunctionPackage\\src\\BasicFunctionsServiceProvider"
             ]
         }
     },

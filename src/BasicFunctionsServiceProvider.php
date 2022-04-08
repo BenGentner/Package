@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage;
+namespace Webfactor\WfBasicFunctionPackage\src;
 
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
