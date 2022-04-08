@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("title");
             $table->string("slug")->unique();
             $table->unsignedBigInteger("category_id")->nullable();
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("creator_user_id")->nullable();
             $table->text("excerpt");
             $table->text("body");
