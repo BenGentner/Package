@@ -11,7 +11,18 @@
     "minimum-stability": "dev",
     "require": {
         "ziffmedia/nova-select-plus": "^1.0",
-        "laravel/nova": "3.*"
+        "laravel/nova": "3.*",
+        "ebess/advanced-nova-media-library": "^3.8"
+    },
+    "autoload": {
+
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webfactor\\WfBasicFunctionPackage\\BasicFunctionsServiceProvider"
+            ]
+        }
     },
     "config": {
         "sort-packages": true
