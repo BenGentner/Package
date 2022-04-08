@@ -43,7 +43,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - package read me
             - clean up everything!!!
             - clean up inserts
-            - check if all() methods make sense (or render the first 10 and then the next 10 ....)
             - check which controllers, ... should be published and then add them to publish (and) install command
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
@@ -64,6 +63,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - improve get path of media (especially front end) maybe ajax request to media controller (currently too much logic in front-end)
             - nova group resources
             - tests... a lot of them
+            - comment body improvements (return doesn't get shown properly)
 
          */
     /**

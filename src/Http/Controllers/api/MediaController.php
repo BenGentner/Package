@@ -5,7 +5,9 @@ namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Webfactor\WfBasicFunctionPackage\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Webfactor\WfBasicFunctionPackage\Models\Gallery;
+
 
 class MediaController extends Controller
 {
@@ -15,10 +17,10 @@ class MediaController extends Controller
          * TODO:
          *  - get by name (maybe not unique)
          */
-        $media = Media::where("id", $key)->first();
+        $media = Media::where("uuid", $key)->first();
         if(!$media)
             abort(404);
 
-        return $media;
+        return $media->getFullUrl();
     }
 }

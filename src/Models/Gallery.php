@@ -17,7 +17,7 @@ class Gallery extends Model implements HasMedia
     use InteractsWithMedia;
 
 
-    public function registerMediaConversions(Media|\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
+    public function registerMediaConversions(\Spatie\MediaLibrary\MediaCollections\Models\Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(640)
@@ -38,7 +38,7 @@ class Gallery extends Model implements HasMedia
 
     public function header_image()
     {
-        return $this->belongsTo(Media::class);
+        return $this->belongsTo(\Spatie\MediaLibrary\MediaCollections\Models\Media::class);
     }
 
     public function creator()

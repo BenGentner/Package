@@ -8,7 +8,7 @@
         </div>
         <div class="card-image">
             <figure class="image is-16by9">
-                <img :src="this.url" alt="https://bulma.io/images/placeholders/640x360.png">
+                <img :src="this.url" :alt="$attrs.data.title">
             </figure>
         </div>
         <div class="card-content">
@@ -40,18 +40,16 @@ export default {
         {
             location.href=this.routes_url;
         },
-        getUrl(image)
+        getThumbnailUrl(image)
         {
-            var path = './storage/' + image.id + '/conversions/';
+            var og_path = image.original_url;
             var extension = image.file_name.substring(image.file_name.lastIndexOf('.'), image.file_name.length) || image.file_name
-            var thumbnail = image.name + "-thumb" + extension;
-
-            return path +thumbnail;
+            return og_path.replace(image.file_name,  'conversions/' + image.name + "-thumb" + extension);
         }
     },
 
     created() {
-        this.url = this.getUrl(this.$attrs.data.header_image);
+        this.url = this.getThumbnailUrl(this.$attrs.data.header_image);
 
         config.get("gallery_path")
             .then(response => this.routes_url = response.replace('{key}', this.$attrs.data.slug))

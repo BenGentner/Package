@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Category;
+use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 use Webfactor\WfBasicFunctionPackage\Models\post;
 
 class PostController extends Controller
@@ -28,17 +29,16 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
+        $skip = $request->skip ? $request->skip : config('wf-functions.default_skip_posts');
+        $amount = $request->amount ? $request->amount :  config('wf-functions.default_amount_posts');
+
         //just posts with a specific category
         $category = $request->category;
         if($category)
-            return Post::where("category_id", $category)->get()->load(["user", "category"]);
+            return Post::latest()->where("category_id", $category)->take($amount)->skip($skip)->with(["user", "category"])->get();
 
-        //all posts
-        return Post::all()->load(["user", "category"]);
-        /*
-         * TODO:
-         *  -check if all posts should be loaded or just a couple (extra method needed)
-         */
+        //get posts from all categories
+        return Post::query()->take($amount)->skip($skip)->with(["user", "category"])->get();
     }
 
     public function create()

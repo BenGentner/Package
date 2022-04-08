@@ -21,6 +21,7 @@ Route::middleware('web')->group(function () {
 
 //Returns one image
     Route::get("/api/" . config("wf-routes.medium_path"), [controllers\api\MediaController::class, 'index']);
+    Route::get(config("wf-routes.medium_path"), [controllers\view\MediaController::class, 'index']);
 
     /**
      * Post
