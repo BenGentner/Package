@@ -1,11 +1,7 @@
 @extends("/Webfactor/WfBasicFunctionPackage/views/master")
 
 @section("content")
-    <div id="app">
-        <single_post
+    <single_post
             v-bind:data="{{$post}}"
-        ></single_post>
-    </div>
-
-    <script defer src="{{(asset('js/Webfactor/WfBasicFunctionPackage/app.js'))}}"></script>
+    ></single_post>
 @endsection

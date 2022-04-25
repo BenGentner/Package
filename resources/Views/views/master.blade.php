@@ -18,25 +18,33 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
+<body>
+@if (Route::has('login'))
+    <div class="hidden fixed top-0 right-0 px-6 py-3 sm:block">
+        @auth
+            <a href="{{ url('/nova') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+            <a href="{{ route('nova.logout') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+                {{ __('Logout') }}
+            </a>
+        @else
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
 
-    @if (Route::has('login'))
-        <div class="hidden fixed top-0 right-0 px-6 py-3 sm:block">
-            @auth
-                <a href="{{ url('/nova') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                <a href="{{ route('nova.logout') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
-                    {{ __('Logout') }}
-                </a>
-            @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+            @endif
+        @endauth
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                @endif
-            @endauth
+    </div>
 
-        </div>
+@endif
+<main id="app">
+    @yield('content')
+</main>
 
-    @endif
-@yield('content')
+<script src="{{ mix('js/package_app.js') }}"></script>
+@stack('after_scripts')
+</body>
+
+
 
 </html>

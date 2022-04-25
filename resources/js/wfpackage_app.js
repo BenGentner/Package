@@ -1,11 +1,11 @@
 import Vue from "vue";
 import {BootstrapVue, BootstrapVueIcons} from "bootstrap-vue"
 import axios from "axios";
-import posts_grid from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/posts-grid.vue";
-import post_preview from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/post-preview.vue";
-import single_post from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/single_post.vue";
-import single_gallery from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/single_gallery.vue";
-import galleries from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/galleries.vue";
+import posts_grid from "./vue/posts-grid.vue";
+import post_preview from "./vue/post-preview.vue";
+import single_post from "./vue/single_post.vue";
+import single_gallery from "./vue/single_gallery.vue";
+import galleries from "./vue/galleries.vue";
 // import test1 from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/test.vue";
 // import test2 from "../Views/vue-components/test.vue";
 

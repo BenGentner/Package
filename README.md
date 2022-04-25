@@ -1,0 +1,1 @@
+mix.js('resources/js/Webfactor/WfBasicFunctionPackage/package_app.js', "public/js").vue()
