@@ -65,6 +65,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - tests... a lot of them
             - comment body improvements (return doesn't get shown properly)
             - registerMediaConversions isn't working in package (jobs table (DB) fehlermeldung)
+            - command to install packages (npm..)
 
          */
     /**

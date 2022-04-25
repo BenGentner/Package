@@ -41,7 +41,7 @@
     @yield('content')
 </main>
 
-<script src="{{ mix('js/package_app.js') }}"></script>
+<script src="{{ mix('js/WFpackage_app.js') }}"></script>
 @stack('after_scripts')
 </body>
 
