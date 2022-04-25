@@ -10,14 +10,12 @@
         "prod": "npm run production",
         "production": "mix --production"
     },
-    "devDependencies": {
+    "dependencies": {
         "laravel-mix": "^6.0.43",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.7",
         "vue-template-compiler": "^2.6.12",
-        "webpack": "^5.72.0"
-    },
-    "dependencies": {
+        "webpack": "^5.72.0",
         "bootstrap-vue": "^2.21.2"
     }
 }
