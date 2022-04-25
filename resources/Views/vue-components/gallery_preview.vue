@@ -42,9 +42,11 @@ export default {
         },
         getThumbnailUrl(image)
         {
-            var og_path = image.original_url;
-            var extension = image.file_name.substring(image.file_name.lastIndexOf('.'), image.file_name.length) || image.file_name
-            return og_path.replace(image.file_name,  'conversions/' + image.name + "-thumb" + extension);
+          if(image == null)
+            return null;
+          var og_path = image.original_url;
+          var extension = image.file_name.substring(image.file_name.lastIndexOf('.'), image.file_name.length) || image.file_name
+          return og_path.replace(image.file_name,  'conversions/' + image.name + "-thumb" + extension);
         }
     },
 
