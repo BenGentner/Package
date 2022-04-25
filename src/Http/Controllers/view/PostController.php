@@ -22,7 +22,7 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
          *  - view improvements
          */
         $post = parent::index($post);
-        return view("Webfactor/WfBasicFunctionPackage/views/single_post", compact("post"));
+        return view("Webfactor/WfBasicFunctionPackage/single_post", compact("post"));
     }
 
     /**
@@ -46,7 +46,7 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 
     public function show(Request $request)
     {
-        return view("Webfactor/WfBasicFunctionPackage/views/posts");
+        return view("Webfactor/WfBasicFunctionPackage/posts");
     }
     public function create()
     {

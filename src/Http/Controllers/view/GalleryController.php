@@ -14,11 +14,11 @@ class GalleryController extends \Webfactor\WfBasicFunctionPackage\Http\Controlle
     public function index($key)
     {
         $gallery = parent::index($key);
-        return view("Webfactor/WfBasicFunctionPackage/views/single_gallery", compact("gallery"));
+        return view("Webfactor/WfBasicFunctionPackage/single_gallery", compact("gallery"));
     }
 
     public function show()
     {
-        return view("Webfactor/WfBasicFunctionPackage/views/galleries");
+        return view("Webfactor/WfBasicFunctionPackage/galleries");
     }
 }
