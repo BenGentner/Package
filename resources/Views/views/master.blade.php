@@ -41,6 +41,8 @@
     @yield('content')
 </main>
 
+<x-flash/>
+
 <script src="{{ mix('js/WFpackage_app.js') }}"></script>
 @stack('after_scripts')
 </body>

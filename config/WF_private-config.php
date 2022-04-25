@@ -1,28 +1,20 @@
 <?php
-    /*
-     *
-     */
-    return
+/*
+ *
+ */
+return
     [
-
-        'default_amount_posts' => 10,
-        'default_skip_posts' => 0,
-
-        'default_amount_galleries' => 10,
-        'default_skip_galleries' => 0,
-
-
         /*
          * names of the models used by the package
          */
 
         'models' => [
-          'post' => \Webfactor\WfBasicFunctionPackage\Models\Post::class,
-          'tag' => \Webfactor\WfBasicFunctionPackage\Models\Tag::class,
-          'category' => \Webfactor\WfBasicFunctionPackage\Models\Category::class,
-          'media' => \Spatie\MediaLibrary\MediaCollections\Models\Media::class,
-          'gallery' => \Webfactor\WfBasicFunctionPackage\Models\Gallery::class,
-          'comment' => \Webfactor\WfBasicFunctionPackage\Models\Comment::class,
+            'post' => \Webfactor\WfBasicFunctionPackage\Models\Post::class,
+            'tag' => \Webfactor\WfBasicFunctionPackage\Models\Tag::class,
+            'category' => \Webfactor\WfBasicFunctionPackage\Models\Category::class,
+            'media' => \Spatie\MediaLibrary\MediaCollections\Models\Media::class,
+            'gallery' => \Webfactor\WfBasicFunctionPackage\Models\Gallery::class,
+            'comment' => \Webfactor\WfBasicFunctionPackage\Models\Comment::class,
         ],
 
         /*

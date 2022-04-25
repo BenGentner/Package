@@ -29,8 +29,8 @@ class PostController extends Controller
 
     public function show(Request $request)
     {
-        $skip = $request->skip ? $request->skip : config('wf-functions.default_skip_posts');
-        $amount = $request->amount ? $request->amount :  config('wf-functions.default_amount_posts');
+        $skip = $request->skip ? $request->skip : config('wf-base.default_skip_posts');
+        $amount = $request->amount ? $request->amount :  config('wf-base.default_amount_posts');
 
         //just posts with a specific category
         $category = $request->category;

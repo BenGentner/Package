@@ -42,10 +42,12 @@ class CommentController extends Controller
             "body" => \request()->body,
         ]);
 
+        session()->flash('success', 'Comment has been created');
+
         return ["message" => "success"];
     }
 
-    public function validation()
+    protected function validation()
     {
         \request()->validate([
             'body' => 'required'

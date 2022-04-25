@@ -1,7 +1,7 @@
 <template>
     <form class="m-4 col-start-1 col-span-2" @submit.prevent="onSubmit()" @keydown="form.errors.clear($event.target.name)">
         <p>
-            <textarea class="w-100 border-2 border-black" rows="15" name="body" v-model="form.body" v-text="this.getBody"></textarea>
+            <textarea class="w-100 border-2 border-black" rows="15" name="body" onclick="this.focus();this.select()" v-model="form.body" v-text="this.getBody"></textarea>
             <span class="text-danger"
                   :disabled="form.errors.any()"
                   v-if="form.errors.has('body')"

@@ -52,6 +52,7 @@ class InstallCommand extends Command
 
         if($this->confirm('Do you want to install vue?'))
         {
+            echo 'installing vue...';
             $this->install("vue");
             $this->install("vue-loader");
             $this->install("bootstrap-vue");

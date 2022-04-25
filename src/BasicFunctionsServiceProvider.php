@@ -33,39 +33,34 @@ class BasicFunctionsServiceProvider extends ServiceProvider
 
     private function mergeConfig()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'wf-functions');
-        $this->mergeConfigFrom(__DIR__.'/../config/route_config.php', 'wf-routes');
+        $this->mergeConfigFrom(__DIR__.'/../config/WF_base-config.php', 'wf-base');
+        $this->mergeConfigFrom(__DIR__.'/../config/WF_private-config.php', 'wf-private');
+        $this->mergeConfigFrom(__DIR__.'/../config/Wf_route-config.php', 'wf-routes');
     }
     /*
          * TODO:
+            - TAGS!
             - api routes => return json (maybe more routes)
             - view routes => return blade views
             - package read me
             - clean up everything!!!
             - clean up inserts
-            - check which controllers, ... should be published and then add them to publish (and) install command
             - front-end create post needed in package?
             - controller: store, update methods with basic validation? (User can then expand them and create views)
             - basic create, ... view?
             - comments on comments ?
             - install command with register service provider (example install command laravel nova) (multiple service provider)
             - check needed packages and add missing to require (of the package)
-            - php .\artisan ui:auth needed! (maybe add to install, definitely add to read me)
             - potential improvements to posts grid ( click event,...)
             - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
             - flash messages (successful create/ edit comment,...) (maybe should be made by user?) https://laravel-news.com/building-a-flash-message-component-with-vue-js-and-tailwind-css
             - placeholder image
             - make posts prettier (single post, comment, create comment)
             - gallery header image foreign key
-            - gallery media upload message (that it takes a bit)
-            - media trigger insert url (maybe think about it) (add column to media that has the route to the picture)
-            - or/and
-            - improve get path of media (especially front end) maybe ajax request to media controller (currently too much logic in front-end)
             - nova group resources
             - tests... a lot of them
             - comment body improvements (return doesn't get shown properly)
-            - registerMediaConversions isn't working in package (jobs table (DB) fehlermeldung)
-            - command to install packages (npm..)
+            - command to install vue (working but vue 3 get installed, not working with bootstrap)
 
          */
     /**
@@ -78,6 +73,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->loadMethods();
         $this->loadNova();
         $this->publishResources();
+        $this->publishControllers();
         $this->addCommands();
     }
 
@@ -91,13 +87,13 @@ class BasicFunctionsServiceProvider extends ServiceProvider
          *  - just load views that won't be published
          */
 //        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
-        $this->loadSeeders(config('wf-functions.seeder'));
+        $this->loadSeeders(config('wf-private.seeder'));
     }
 
     private function loadNova()
     {
-        $models = config('wf-functions.models');
-        $resources = config('wf-functions.resources');
+        $models = config('wf-private.models');
+        $resources = config('wf-private.resources');
 
         //register resource and set model
         foreach ($resources as $name => $class) {
@@ -127,6 +123,14 @@ class BasicFunctionsServiceProvider extends ServiceProvider
 //        $this->publishes([
 //            __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
 //        ], 'WfBasicFunctionPackage-js');
+    }
+
+    private function publishControllers()
+    {
+        //publishes the controllers that should be available to the public
+        $this->publishes([
+            __DIR__.'/Http/Controllers/view/' => app_path('Http/Controllers/WfBasicFunctionPackage/')
+        ], 'WfBasicFunctionPackage-controllers');
     }
 
     private function addCommands()
