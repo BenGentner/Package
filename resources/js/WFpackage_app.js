@@ -13,8 +13,14 @@ window.axios = axios;
 
 /*
     TODO:
-        - update import path / tests needed (if the path still works when importing the package)
+     - update import path / tests needed (if the path still works when importing the package)
+     - Vue 3 currently not working because of bootstrap (vue 3 code to mount components below in comment)
  */
+
+// import {createApp} from "vue";
+// createApp({
+//     components: {posts_grid, post_preview, single_post, single_gallery, galleries}
+// }).mount("#app")
 
 window.onload = function ()
 {

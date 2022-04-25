@@ -1,4 +1,4 @@
-@extends("/Webfactor/WfBasicFunctionPackage/views/master")
+@extends("/Webfactor/WfBasicFunctionPackage/master")
 
 @section("content")
     <galleries></galleries>

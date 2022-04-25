@@ -50,6 +50,24 @@ class InstallCommand extends Command
             '--force' => true,
         ]);
 
+        if($this->confirm('Do you want to install vue?'))
+        {
+            $this->install("vue");
+            $this->install("vue-loader");
+            $this->install("bootstrap-vue");
+        }
+
         echo "installation completed!";
+    }
+
+    public function install($package)
+    {
+        $process = new Process(["npm", "install", $package], base_path());
+
+        $process->run();
+
+        if(!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
     }
 }
