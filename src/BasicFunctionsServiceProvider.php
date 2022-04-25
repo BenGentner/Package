@@ -134,7 +134,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 InstallCommand::class,
-                AssetCommand::class,
                 PublishCommand::class,
                 DevCommand::class
             ]);
