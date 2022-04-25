@@ -117,13 +117,15 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         //publishes just one component (just remove the component to publish the hole directory)
 
         $this->publishes([
-            __DIR__.'/../resources/Views/' => resource_path('views/Webfactor/WfBasicFunctionPackage/'),
+            __DIR__.'/../resources/Views/views/' => resource_path('views/Webfactor/WfBasicFunctionPackage/'),
+            __DIR__.'/../resources/Views/vue-components' => resource_path('js/Webfactor/WfBasicFunctionPackage/vue/'),
+            __DIR__.'/../resources/js' => resource_path('js/Webfactor/WfBasicFunctionPackage/'),
         ], 'WfBasicFunctionPackage-views');
 
-        //publish app.js
-        $this->publishes([
-            __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
-        ], 'WfBasicFunctionPackage-js');
+        // todo: test if needed (publish app.js:)
+//        $this->publishes([
+//            __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
+//        ], 'WfBasicFunctionPackage-js');
     }
 
     private function addCommands()
