@@ -47,7 +47,7 @@ export default {
     methods: {
         getPosts() {
             axios.get("/api/" +  this.posts_url, {
-                params: {category: this.category?.id, search: this.search_text}})
+                params: {category: this.category, search: this.search_text}})
                 .then(response => this.posts = response.data)
 
         },

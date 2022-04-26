@@ -1,8 +1,11 @@
 <template>
-    <dropdown :current-value="this.category"
-              :value-list="categories"
-              @selected="getSelectedCategory">
-    </dropdown>
+    <div>
+        <label class="label">Category</label>
+        <dropdown :current-value="this.category"
+                  :value-list="categories"
+                  @selected="getSelectedCategory">
+        </dropdown>
+    </div>
 </template>
 
 <script>
