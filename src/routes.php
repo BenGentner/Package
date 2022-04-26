@@ -46,7 +46,6 @@ Route::middleware('web')->group(function () {
 
     /**
      * TODO next:
-     *  - routes with config
      *  - clean up controllers
      *  - add missing api routes
      */

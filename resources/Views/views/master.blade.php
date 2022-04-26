@@ -39,9 +39,13 @@
 @endif
 <main id="app">
     @yield('content')
+
+    @if(session()->has('success'))
+        <flash message="{{session("success")}}"></flash>
+    @endif
 </main>
 
-<x-flash/>
+
 
 <script src="{{ mix('js/WFpackage_app.js') }}"></script>
 @stack('after_scripts')
@@ -50,3 +54,6 @@
 
 
 </html>
+<script>
+
+</script>

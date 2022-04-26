@@ -7,7 +7,6 @@
         <p class="col-span-2 col-start-1" v-html="$attrs.data.excerpt"></p>
     </a>
 
-
 </template>
 <script>
 import config from "./config.js"

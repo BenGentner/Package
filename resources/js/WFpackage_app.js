@@ -6,6 +6,7 @@ import post_preview from "./vue/post-preview.vue";
 import single_post from "./vue/single_post.vue";
 import single_gallery from "./vue/single_gallery.vue";
 import galleries from "./vue/galleries.vue";
+import flash from "./vue/flash.vue"
 // import test1 from "../../../../../resources/views/Webfactor/WfBasicFunctionPackage/vue-components/test.vue";
 // import test2 from "../Views/vue-components/test.vue";
 
@@ -29,7 +30,7 @@ window.onload = function ()
     new Vue({
         el: "#app",
 
-        components: {posts_grid, post_preview, single_post, single_gallery, galleries}
+        components: {posts_grid, post_preview, single_post, single_gallery, galleries, flash}
     })
 }
 

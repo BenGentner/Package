@@ -63,7 +63,7 @@ export default {
         checkUser() {
             //prevents v-if before the user has been loaded
             if(this.isLoaded) {
-                if (this.$attrs.data.user.name === this.user.name)
+                if (this.$attrs.data.user.name === this.user?.name)
                     return true;
             }
         },
@@ -75,7 +75,7 @@ export default {
              */
             location.reload();
         }
-    }
+    },
 }
 </script>
 

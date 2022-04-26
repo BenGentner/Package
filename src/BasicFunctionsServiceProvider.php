@@ -5,7 +5,6 @@ namespace Webfactor\WfBasicFunctionPackage;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use Webfactor\WfBasicFunctionPackage\Console\AssetCommand;
 use Webfactor\WfBasicFunctionPackage\Console\DevCommand;
 use Webfactor\WfBasicFunctionPackage\Console\InstallCommand;
 use Webfactor\WfBasicFunctionPackage\Console\PublishCommand;
@@ -39,7 +38,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     }
     /*
          * TODO:
-            - TAGS!
             - api routes => return json (maybe more routes)
             - view routes => return blade views
             - package read me
@@ -53,7 +51,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - check needed packages and add missing to require (of the package)
             - potential improvements to posts grid ( click event,...)
             - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
-            - flash messages (successful create/ edit comment,...) (maybe should be made by user?) https://laravel-news.com/building-a-flash-message-component-with-vue-js-and-tailwind-css
             - placeholder image
             - make posts prettier (single post, comment, create comment)
             - gallery header image foreign key
@@ -61,6 +58,8 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - tests... a lot of them
             - comment body improvements (return doesn't get shown properly)
             - command to install vue (working but vue 3 get installed, not working with bootstrap)
+            - sql optimization (too many curren_user requests...) (check clockwork)
+            - category with bulma css
 
          */
     /**

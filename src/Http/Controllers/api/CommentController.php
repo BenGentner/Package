@@ -27,6 +27,8 @@ class CommentController extends Controller
             "body" => \request()->body,
         ]);
 
+        session()->flash('success', 'Comment has been created');
+
         return ["message" => "success"];
     }
     public function update($key)
@@ -42,7 +44,7 @@ class CommentController extends Controller
             "body" => \request()->body,
         ]);
 
-        session()->flash('success', 'Comment has been created');
+        session()->flash('success', 'Comment has been updated');
 
         return ["message" => "success"];
     }
@@ -50,7 +52,7 @@ class CommentController extends Controller
     protected function validation()
     {
         \request()->validate([
-            'body' => 'required'
+            'body' => 'required',
         ]);
 
         if(!auth()->user())

@@ -5,7 +5,8 @@
         <h2 v-else class="m-2 col-start-2 text-right mr-4">Please <a href="/login">Log in</a> to comment</h2>
         <comment_form
             :post="this.post"
-            type="create">
+            type="create"
+        @success="success">
         </comment_form>
     </div>
 
@@ -44,6 +45,13 @@ export default {
         axios.get("/current_user/")
             .then(response => this.user = response.data);
     },
+    methods: {
+        success(message)
+        {
+            console.log("message")
+            location.reload();
+        }
+    }
 }
 </script>
 

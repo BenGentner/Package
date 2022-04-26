@@ -36,6 +36,23 @@ class Post extends Model
         return $this->belongsTo(User::class, "creator_user_id");
     }
 
+    public function scopeSearch($query, $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search){
+            $query->where(fn($query) =>
+                $query->where("title", "like", "%" . $search . "%")
+                      ->orwhereHas("user", fn ($query) =>
+                          $query->where("name", "like", "%" . $search . "%"))
+                      ->orwhereHas("tags", fn ($query) =>
+                          $query->where("name", "like", "%" . $search . "%"))
+            );
+        });
+//        $query->when($filters['search'] ?? false, function ($query, $search) {
+//
+//        });
+        return $query;
+    }
+
     protected static function boot()
     {
         parent::boot();
