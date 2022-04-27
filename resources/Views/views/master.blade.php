@@ -43,6 +43,9 @@
     @if(session()->has('success'))
         <flash message="{{session("success")}}"></flash>
     @endif
+    @if(session()->has('error'))
+        <flash message="{{session("error")}}"></flash>
+    @endif
 </main>
 
 

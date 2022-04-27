@@ -1,6 +1,6 @@
 <template>
     <div>
-        <category-dropdown :category="category" @selectedCategory="updateCategory"></category-dropdown>
+        <category-dropdown class="inline-flex m-2" :category="category" @selectedCategory="updateCategory"></category-dropdown>
         <div class="field flex p-2 inline-flex items-center w-3/4">
             <label class="label pr-4">Search: </label>
             <div class="control w-1/4" >

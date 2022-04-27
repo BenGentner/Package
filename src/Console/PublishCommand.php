@@ -29,11 +29,6 @@ class PublishCommand extends Command
      */
     public function handle()
     {
-        /*
-          TODO:
-           - probably remove this command (just for dev)
-         */
-
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-views',
             '--force' => true,

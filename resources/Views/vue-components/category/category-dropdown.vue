@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <label class="label">Category</label>
+    <div class="m-2.5">
+        <label class="label mr-4">Category</label>
         <dropdown :current-value="this.category"
                   :value-list="categories"
                   @selected="getSelectedCategory">

@@ -15,25 +15,6 @@
             </div>
         </div>
     </div>
-<!--    TODO: -which dropdown? top isn't working atm-->
-<!--    <b-dropdown variant="primary m-2">-->
-<!--        <template #button-content>-->
-<!--            <div v-text="currentCategory.name"></div>-->
-<!--        </template>-->
-<!--        <b-dropdown-item-button-->
-<!--            v-for="value in valueList"-->
-<!--            v-bind:key = "value.id"-->
-<!--            v-if="checkIsCurrent(value)"-->
-<!--            @click="selectCategory(value)">-->
-<!--            {{value.name}}-->
-<!--        </b-dropdown-item-button>-->
-<!--        <b-dropdown-item-button-->
-<!--            @click="selectCategory(null)"-->
-<!--            v-if="checkIsCurrent(this.all)">-->
-<!--            {{this.all.name}}-->
-<!--        </b-dropdown-item-button>-->
-<!--    </b-dropdown>-->
-
 </template>
 
 

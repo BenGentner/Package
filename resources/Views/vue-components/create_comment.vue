@@ -6,7 +6,8 @@
         <comment_form
             :post="this.post"
             type="create"
-        @success="success">
+        @success="success"
+        @error="error">
         </comment_form>
     </div>
 
@@ -33,22 +34,18 @@
 import Comment_form from "./form/comment_form.vue"
 export default {
     components: {Comment_form},
-    props: ["post"],
+    props: ["post", "user"],
     name: "create_comment.vue",
 
-    data() {
-        return {
-            user: null,
-        }
-    },
-    created() {
-        axios.get("/current_user/")
-            .then(response => this.user = response.data);
-    },
     methods: {
         success(message)
         {
-            console.log("message")
+            console.log(message)
+            location.reload();
+        },
+        error(message)
+        {
+            console.log(message)
             location.reload();
         }
     }

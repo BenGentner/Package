@@ -9,33 +9,18 @@
         <div v-if="$attrs.data.commentable">
             <h2 class="mt-3">Comments: </h2>
             <create_comment
-                :post = "$attrs.data.slug">
+                :post = "$attrs.data.slug"
+                :user="user">
             </create_comment>
         </div>
         <div class="text-red-500 text-xl" v-else>Comments are not allowed on this post!</div>
         <comment v-if="ready"
-            v-for="comment in $attrs.data.comments"
-            v-bind:data="comment"
-            v-bind:key="comment.id"
+                 v-for="comment in $attrs.data.comments"
+                 v-bind:data="comment"
+                 v-bind:key="comment.id"
+                 :current_user="user"
         ></comment>
-
     </article>
-
-<!--    <article class="media">-->
-<!--        <div class="media-content">-->
-<!--            <div class="content">-->
-<!--                <p>-->
-<!--                    <strong>User</strong>-->
-<!--                    <br>-->
-<!--                    Post-->
-<!--                    <br>-->
-<!--                    <small><a>Category</a> · <a>tags</a> · 3 hrs</small>-->
-<!--                </p>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </article>-->
-
 </template>
 
 
@@ -54,10 +39,16 @@ export default {
     data () {
         return {
             ready: false,
+            user: ''
         }
     },
 
     mounted() {
+        axios.get("/current_user/")
+            .then((response) =>
+            {
+                this.user = response.data;
+            });
         this.ready = true;
     },
 

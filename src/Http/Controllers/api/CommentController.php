@@ -11,25 +11,33 @@ use Webfactor\WfBasicFunctionPackage\Models\Post;
 
 class CommentController extends Controller
 {
-    public function store($key)
+    public function index($key)
     {
         $post = Post::where("slug", $key)
             ->orWhere("id", $key)->first();
 
         if(!$post)
-            abort(Response::HTTP_FORBIDDEN);
+            return abort(Response::HTTP_FORBIDDEN);
+        return $post;
+    }
+    public function store($key)
+    {
+        $post = $this->index($key);
 
-        $this->validation();
+        if(!auth()->user())
+        {
+            session()->flash('error', 'you need to be logged in to create a comment');
+            return;
+        }
 
-        Comment::create([
-            "user_id" => auth()->id(),
+
+        Comment::create(array_merge($this->validation(), [
             "post_id" => $post->id,
-            "body" => \request()->body,
-        ]);
+            "user_id" => auth()->user()->id
+        ]));
 
         session()->flash('success', 'Comment has been created');
 
-        return ["message" => "success"];
     }
     public function update($key)
     {
@@ -38,11 +46,13 @@ class CommentController extends Controller
         if(!$comment)
             abort(Response::HTTP_FORBIDDEN);
 
-        $this->validation();
+        if(!auth()->user())
+        {
+            session()->flash('error', 'you need to be logged in comment');
+            return;
+        }
 
-        $comment->update([
-            "body" => \request()->body,
-        ]);
+        $comment->update($this->validation());
 
         session()->flash('success', 'Comment has been updated');
 
@@ -51,11 +61,8 @@ class CommentController extends Controller
 
     protected function validation()
     {
-        \request()->validate([
+        return \request()->validate([
             'body' => 'required',
         ]);
-
-        if(!auth()->user())
-            return ["message" => "Failed! Please login!"];
     }
 }

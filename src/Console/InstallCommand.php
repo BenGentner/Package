@@ -32,8 +32,7 @@ class InstallCommand extends Command
         /*
           TODO:
            -install command
-            - check if compile is needed when installing
-            - test / maybe  improve
+           - test / maybe  improve
          */
 
         echo "publishing editable views";

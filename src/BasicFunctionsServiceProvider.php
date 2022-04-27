@@ -5,16 +5,11 @@ namespace Webfactor\WfBasicFunctionPackage;
 use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
-use Webfactor\WfBasicFunctionPackage\Console\DevCommand;
 use Webfactor\WfBasicFunctionPackage\Console\InstallCommand;
 use Webfactor\WfBasicFunctionPackage\Console\PublishCommand;
 
 class BasicFunctionsServiceProvider extends ServiceProvider
 {
-    /*
-     * TODO:
-     *  - clean up provider / make multiple providers and one that calls the others
-     */
     /**
      * Register services.
      *
@@ -22,11 +17,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        /*
-         * TODO:
-         *  -make controller probably not needed:
-         */
-//        $this->app->make('Webfactor\WfBasicFunctionPackage\Http\Controllers\PostController');
         $this->mergeConfig();
     }
 
@@ -43,9 +33,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - package read me
             - clean up everything!!!
             - clean up inserts
-            - front-end create post needed in package?
-            - controller: store, update methods with basic validation? (User can then expand them and create views)
-            - basic create, ... view?
+            - test: controller: store, update methods with basic validation? (User can then expand them and create views)
             - comments on comments ?
             - install command with register service provider (example install command laravel nova) (multiple service provider)
             - check needed packages and add missing to require (of the package)
@@ -56,11 +44,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - gallery header image foreign key
             - nova group resources
             - tests... a lot of them
-            - comment body improvements (return doesn't get shown properly)
-            - command to install vue (working but vue 3 get installed, not working with bootstrap)
-            - sql optimization (too many curren_user requests...) (check clockwork)
-            - category with bulma css
-
+            - publish config
          */
     /**
      * Bootstrap services.
@@ -117,11 +101,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             __DIR__.'/../resources/Views/vue-components' => resource_path('js/Webfactor/WfBasicFunctionPackage/vue/'),
             __DIR__.'/../resources/js' => resource_path('js/Webfactor/WfBasicFunctionPackage/'),
         ], 'WfBasicFunctionPackage-views');
-
-        // todo: test if needed (publish app.js:)
-//        $this->publishes([
-//            __DIR__.'/../public/' => public_path('js/Webfactor/WfBasicFunctionPackage'),
-//        ], 'WfBasicFunctionPackage-js');
     }
 
     private function publishControllers()
@@ -138,7 +117,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             $this->commands([
                 InstallCommand::class,
                 PublishCommand::class,
-                DevCommand::class
             ]);
         }
     }

@@ -13,10 +13,6 @@ class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\
 {
     public function index($post)
     {
-        /*
-         * TODO:
-         *  - view improvements
-         */
         $post = parent::index($post);
         return view("Webfactor/WfBasicFunctionPackage/single_post", compact("post"));
     }

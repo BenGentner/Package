@@ -13,11 +13,8 @@ class MediaController extends Controller
 {
     public function index($key)
     {
-        /**
-         * TODO:
-         *  - get by name (maybe not unique)
-         */
-        $media = Media::where("uuid", $key)->first();
+        $media = Media::where("uuid", $key)
+            ->orWhere("name", $key)->first();
         if(!$media)
             abort(404);
 

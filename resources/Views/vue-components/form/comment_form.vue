@@ -26,7 +26,6 @@ export default {
                 body: ''
             }),
             post_url: '',
-            user: null,
         }
     },
     created() {
@@ -42,14 +41,12 @@ export default {
                 .then(response => this.post_url = response.replace('{key}', this.post))
                 .catch(error => console.error(error));
         }
-        axios.get("/current_user/")
-            .then(response => this.user = response.data);
     },
     methods: {
         onSubmit() {
             this.form.post(this.post_url)
                 .then(success_message => this.$emit("success", success_message))
-                .catch(error_message => console.error(error_message));
+                .catch(error_message => this.$emit("error", error_message));
         },
     },
     computed: {
