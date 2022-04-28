@@ -30,12 +30,20 @@ class Gallery extends Resource
     public static $title = 'title';
 
     /**
+     * The group that the resource should be added to
+     *
+     * @var string
+     */
+    public static $group = 'Gallery';
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
         'id',
+        'user_id',
+        'title'
     ];
 
     /**
@@ -80,7 +88,9 @@ class Gallery extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new \Webfactor\WfBasicFunctionPackage\Nova\Filters\UserFilter(),
+        ];
     }
 
     /**

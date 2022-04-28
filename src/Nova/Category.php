@@ -25,6 +25,8 @@ class Category extends Resource
      */
     public static $title = 'name';
 
+    public static $group = 'Post';
+
     /**
      * The columns that should be searched.
      *
@@ -32,6 +34,7 @@ class Category extends Resource
      */
     public static $search = [
         'id',
+        'name'
     ];
 
     /**

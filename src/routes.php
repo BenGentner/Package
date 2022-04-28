@@ -12,16 +12,16 @@ Route::middleware('web')->group(function () {
      */
 
 //Return all Galleries (maybe with on image (header))
-    Route::get(config("wf-routes.galleries_path"), [controllers\view\GalleryController::class, 'show']);
+    Route::get(config("wf-routes.galleries_path"), [App\Http\Controllers\WfBasicFunctionPackage\GalleryController::class, 'show']);
     Route::get("/api/" . config("wf-routes.galleries_path"), [controllers\api\GalleryController::class, 'show'] );
 
 //Return one Gallery with all images (or a specific amount that gets displayed at ones)
     Route::get("/api/" .config("wf-routes.gallery_path"), [controllers\api\GalleryController::class, 'index']);
-    Route::get(config("wf-routes.gallery_path"), [controllers\view\GalleryController::class, 'index']);
+    Route::get(config("wf-routes.gallery_path"), [App\Http\Controllers\WfBasicFunctionPackage\GalleryController::class, 'index']);
 
 //Returns one image
     Route::get("/api/" . config("wf-routes.medium_path"), [controllers\api\MediaController::class, 'index']);
-    Route::get(config("wf-routes.medium_path"), [controllers\view\MediaController::class, 'index']);
+    Route::get(config("wf-routes.medium_path"), [App\Http\Controllers\WfBasicFunctionPackage\MediaController::class, 'index']);
 
     /**
      * Post
@@ -30,8 +30,8 @@ Route::middleware('web')->group(function () {
     Route::get('/api/'. config("wf-routes.multiple_posts_path"), [controllers\api\PostController::class, 'show']);
     Route::get('/api/'. config("wf-routes.single_post_path"), [controllers\api\PostController::class, 'index']);
 
-    Route::get(config("wf-routes.multiple_posts_path"), [controllers\view\PostController::class, 'show']);
-    Route::get(config("wf-routes.single_post_path"), [controllers\view\PostController::class, 'index']);
+    Route::get(config("wf-routes.multiple_posts_path"), [App\Http\Controllers\WfBasicFunctionPackage\PostController::class, 'show']);
+    Route::get(config("wf-routes.single_post_path"), [App\Http\Controllers\WfBasicFunctionPackage\PostController::class, 'index']);
 
     /**
      * Comment
@@ -46,8 +46,7 @@ Route::middleware('web')->group(function () {
 
     /**
      * TODO next:
-     *  - clean up controllers
-     *  - add missing api routes
+     *  - add more api routes
      */
 });
 

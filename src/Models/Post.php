@@ -5,6 +5,7 @@ namespace Webfactor\WfBasicFunctionPackage\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Post extends Model
 {
@@ -52,23 +53,31 @@ class Post extends Model
 //        });
         return $query;
     }
+//
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        self::saved(function ($callback) {
+//            if($callback->user_id != auth()->user()?->id)
+//            {
+//                if(auth()->user()?->id)
+//                {
+//                    $callback->user_id = auth()->user()?->id;
+//                    $callback->save();
+//                }
+//            }
+//        });
+//        self::created(function ($callback) {
+//            $callback->creator_user_id = auth()->user()?->id;
+//        });
+//    }
 
-    protected static function boot()
+    public function save(array $options = [])
     {
-        parent::boot();
-
-        self::saved(function ($callback) {
-            if($callback->user_id != auth()->user()?->id)
-            {
-                if(auth()->user()?->id)
-                {
-                    $callback->user_id = auth()->user()?->id;
-                    $callback->save();
-                }
-            }
-        });
-        self::created(function ($callback) {
-            $callback->creator_user_id = auth()->user()?->id;
-        });
+        $this->user_id = auth()?->id();
+        if(!$this->creator_user_id)
+            $this->creator_user_id = auth()?->id();
+        return parent::save($options);
     }
 }

@@ -1,11 +1,10 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
+namespace App\Http\Controllers\WfBasicFunctionPackage;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Webfactor\WfBasicFunctionPackage\Models\Media;
 
 class MediaController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\MediaController
 {

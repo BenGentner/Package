@@ -31,13 +31,34 @@ class Post extends Resource
     public static $title = 'title';
 
     /**
+     * The group that the resource should be added to
+     *
+     * @var string
+     */
+    public static $group = 'Post';
+
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
         'id',
+        'title',
+        'user_id',
+        'excerpt'
     ];
+
+    public  function subtitle()
+    {
+        return "Author: {$this->user->name}";
+    }
+
+//    public static function indexQuery(NovaRequest $request, $query)
+//    {
+//        return $query->where('user_id', $request->user()->id);
+//    }
+
 
     /**
      * Get the fields displayed by the resource.
@@ -95,7 +116,10 @@ class Post extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new \Webfactor\WfBasicFunctionPackage\Nova\Filters\Category(),
+            new \Webfactor\WfBasicFunctionPackage\Nova\Filters\UserFilter(),
+        ];
     }
 
     /**

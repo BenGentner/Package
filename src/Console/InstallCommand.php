@@ -34,6 +34,12 @@ class InstallCommand extends Command
            -install command
            - test / maybe  improve
          */
+        echo "publishing config ";
+
+        $this->call('vendor:publish', [
+            '--tag' => 'WfBasicFunctionPackage-config',
+            '--force' => true,
+        ]);
 
         echo "publishing editable views";
 
@@ -49,12 +55,18 @@ class InstallCommand extends Command
             '--force' => true,
         ]);
 
+        echo "publishing controllers";
+
+        $this->call('vendor:publish', [
+            '--tag' => ' WfBasicFunctionPackage-controllers',
+            '--force' => true,
+        ]);
+
+
         if($this->confirm('Do you want to install vue?'))
         {
             echo 'installing vue...';
             $this->install("vue");
-            $this->install("vue-loader");
-            $this->install("bootstrap-vue");
         }
 
         echo "installation completed!";

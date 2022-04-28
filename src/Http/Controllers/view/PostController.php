@@ -1,6 +1,6 @@
 <?php
 
-namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\view;
+namespace App\Http\Controllers\WfBasicFunctionPackage;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;

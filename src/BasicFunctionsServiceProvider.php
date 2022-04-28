@@ -17,25 +17,19 @@ class BasicFunctionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfig();
     }
 
-    private function mergeConfig()
-    {
-        $this->mergeConfigFrom(__DIR__.'/../config/WF_base-config.php', 'wf-base');
-        $this->mergeConfigFrom(__DIR__.'/../config/WF_private-config.php', 'wf-private');
-        $this->mergeConfigFrom(__DIR__.'/../config/Wf_route-config.php', 'wf-routes');
-    }
     /*
          * TODO:
             - api routes => return json (maybe more routes)
             - view routes => return blade views
             - package read me
+            ----
             - clean up everything!!!
             - clean up inserts
             - test: controller: store, update methods with basic validation? (User can then expand them and create views)
             - comments on comments ?
-            - install command with register service provider (example install command laravel nova) (multiple service provider)
+            - cleaner service provider / multiple providers
             - check needed packages and add missing to require (of the package)
             - potential improvements to posts grid ( click event,...)
             - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
@@ -44,7 +38,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - gallery header image foreign key
             - nova group resources
             - tests... a lot of them
-            - publish config
          */
     /**
      * Bootstrap services.
@@ -53,14 +46,15 @@ class BasicFunctionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMethods();
-        $this->loadNova();
+        $this->publishConfig();
+        $this->mergeConfig();
+        $this->load();
         $this->publishResources();
         $this->publishControllers();
         $this->addCommands();
     }
 
-    private function loadMethods()
+    private function load()
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
@@ -71,6 +65,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
          */
 //        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
         $this->loadSeeders(config('wf-private.seeder'));
+        $this->loadNova();
     }
 
     private function loadNova()
@@ -85,6 +80,13 @@ class BasicFunctionsServiceProvider extends ServiceProvider
                 Nova::resources([$class]);
             }
         }
+
+    }
+    private function mergeConfig()
+    {
+        $this->mergeConfigFrom(config_path("WF_base-config.php"), 'wf-base');
+        $this->mergeConfigFrom(config_path("Wf_route-config.php"), 'wf-routes');
+        $this->mergeConfigFrom(__DIR__.'/../config/WF_private-config.php', 'wf-private');
     }
 
     private function publishResources()
@@ -109,6 +111,13 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/Http/Controllers/view/' => app_path('Http/Controllers/WfBasicFunctionPackage/')
         ], 'WfBasicFunctionPackage-controllers');
+    }
+    private function publishConfig()
+    {
+        $this->publishes([
+            __DIR__.'/../config/WF_base-config.php' => config_path("WF_base-config.php"),
+            __DIR__.'/../config/WF_route-config.php' => config_path("WF_route-config.php"),
+        ], 'WfBasicFunctionPackage-config');
     }
 
     private function addCommands()

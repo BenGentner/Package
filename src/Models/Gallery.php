@@ -46,23 +46,30 @@ class Gallery extends Model implements HasMedia
         return $this->belongsTo(User::class, "creator_user_id");
     }
 
-    protected static function boot()
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        self::saved(function ($callback) {
+//            if($callback->user_id != auth()->user()?->id)
+//            {
+//                if(auth()->user()?->id)
+//                {
+//                    $callback->user_id = auth()->user()?->id;
+//                    $callback->save();
+//                }
+//            }
+//        });
+//
+//        self::created(function ($callback) {
+//            $callback->creator_user_id = auth()->user()?->id;
+//        });
+//    }
+    public function save(array $options = [])
     {
-        parent::boot();
-
-        self::saved(function ($callback) {
-            if($callback->user_id != auth()->user()?->id)
-            {
-                if(auth()->user()?->id)
-                {
-                    $callback->user_id = auth()->user()?->id;
-                    $callback->save();
-                }
-            }
-        });
-
-        self::created(function ($callback) {
-            $callback->creator_user_id = auth()->user()?->id;
-        });
+        $this->user_id = auth()?->id();
+        if(!$this->creator_user_id)
+            $this->creator_user_id = auth()?->id();
+        return parent::save($options);
     }
 }

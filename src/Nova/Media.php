@@ -32,6 +32,13 @@ class Media extends Resource
     public static $title = 'name';
 
     /**
+     * The group that the resource should be added to
+     *
+     * @var string
+     */
+    public static $group = 'Gallery';
+
+    /**
      * The columns that should be searched.
      *
      * @var array

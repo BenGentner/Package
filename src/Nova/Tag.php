@@ -26,12 +26,20 @@ class Tag extends Resource
     public static $title = 'name';
 
     /**
+     * The group that the resource should be added to
+     *
+     * @var string
+     */
+    public static $group = 'Post';
+
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
         'id',
+        'name'
     ];
 
     /**
@@ -45,7 +53,7 @@ class Tag extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("Name", "name")->rules("required", "max:255"),
-            SelectPlus::make("Posts", "posts")->label("title"),
+//            SelectPlus::make("Posts", "posts")->label("title"),
         ];
     }
 

@@ -28,13 +28,23 @@ class Comment extends Resource
     public static $title = 'id';
 
     /**
+     * The group that the resource should be added to
+     *
+     * @var string
+     */
+    public static $group = 'Post';
+
+    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
         'id',
+        'user_id',
     ];
+
+    public static $globallySearchable = false;
 
     /**
      * Get the fields displayed by the resource.
@@ -47,7 +57,7 @@ class Comment extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
             BelongsTo::make("user")->exceptOnForms(),
-            BelongsTo::make("post"),
+            BelongsTo::make("post")->searchable(),
             TextArea::make("body")->displayUsing(function ($id) {
                 $preview = strip_tags(substr($id, 0, 30));
                 return $preview . "...";
@@ -76,7 +86,9 @@ class Comment extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new \Webfactor\WfBasicFunctionPackage\Nova\Filters\UserFilter(),
+        ];
     }
 
     /**
