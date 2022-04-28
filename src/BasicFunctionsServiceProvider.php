@@ -18,7 +18,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     public function register()
     {
     }
-
     /*
          * TODO:
             - api routes => return json (maybe more routes)
@@ -34,9 +33,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - potential improvements to posts grid ( click event,...)
             - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
             - placeholder image
-            - make posts prettier (single post, comment, create comment)
-            - gallery header image foreign key
-            - nova group resources
             - tests... a lot of them
          */
     /**
@@ -91,13 +87,6 @@ class BasicFunctionsServiceProvider extends ServiceProvider
 
     private function publishResources()
     {
-        /**
-         * todo:
-         *  - publish which vue components / views
-         */
-
-        //publishes just one component (just remove the component to publish the hole directory)
-
         $this->publishes([
             __DIR__.'/../resources/Views/views/' => resource_path('views/Webfactor/WfBasicFunctionPackage/'),
             __DIR__.'/../resources/Views/vue-components' => resource_path('js/Webfactor/WfBasicFunctionPackage/vue/'),
