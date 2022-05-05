@@ -5,9 +5,7 @@ namespace Webfactor\WfBasicFunctionPackage\database\factories;;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Webfactor\WfBasicFunctionPackage\Models\Category;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\category>
- */
+
 class CategoryFactory extends Factory
 {
     /**

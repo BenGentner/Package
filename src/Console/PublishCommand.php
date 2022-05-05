@@ -3,8 +3,7 @@
 namespace Webfactor\WfBasicFunctionPackage\Console;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
+
 
 class PublishCommand extends Command
 {
@@ -46,6 +45,13 @@ class PublishCommand extends Command
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-config',
+            '--force' => true,
+        ]);
+
+        echo "publishing Nova Resources";
+
+        $this->call('vendor:publish', [
+            '--tag' => 'WfBasicFunctionPackage-nova',
             '--force' => true,
         ]);
 

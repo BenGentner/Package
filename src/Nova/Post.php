@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpDocSignatureInspection */
 
 namespace Webfactor\WfBasicFunctionPackage\Nova;
 
@@ -7,10 +7,13 @@ use App\Nova\User;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MultiSelect;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use ZiffMedia\NovaSelectPlus\SelectPlus;
 
@@ -63,11 +66,12 @@ class Post extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param NovaRequest $request
      * @return array
      */
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
+        $tags = \Webfactor\WfBasicFunctionPackage\Models\Tag::all()->pluck('name', 'id');
         return [
             ID::make(__('ID'), 'id')->sortable(),
             Text::make("Title", "title")->rules("max:255"),
@@ -88,22 +92,23 @@ class Post extends Resource
                     return strip_tags($excerpt);
                 })
                 ->hideFromIndex(),
-            Textarea::make("Body", "body")->rules("max:65535", "required")
+            Trix::make("Body", "body")->rules("max:65535", "required")
                 ->displayUsing(function ($body) {
                     return strip_tags($body);
                 }),
             Boolean::make("commentable")->default(true),
-            SelectPlus::make("Tags", "tags")
+            MultiSelect::make("Tags", "tags")
+                ->options($tags)
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(NovaRequest $request)
     {
         return [];
     }
@@ -111,10 +116,10 @@ class Post extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(NovaRequest $request)
     {
         return [
             new \Webfactor\WfBasicFunctionPackage\Nova\Filters\Category(),
@@ -125,10 +130,10 @@ class Post extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return array
      */
-    public function lenses(Request $request)
+    public function lenses(NovaRequest $request)
     {
         return [];
     }
@@ -136,10 +141,10 @@ class Post extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param NovaRequest $request
      * @return array
      */
-    public function actions(Request $request)
+    public function actions(NovaRequest $request)
     {
         return [];
     }

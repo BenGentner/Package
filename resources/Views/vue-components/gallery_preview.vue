@@ -2,7 +2,7 @@
 <!--    <a :href="'./gallery/' + $attrs.data.slug">-->
 <!--        -->
 <!--    </a>-->
-    <article class="card w-1/5 float-left m-2" @click="directToGallery">
+    <article class="card w-1/5 m-2 inline-flex" @click="directToGallery">
         <div class="card-header">
             <p class="card-header-title" v-text="$attrs.data.title"></p>
         </div>
@@ -13,7 +13,7 @@
         </div>
         <div class="card-content">
             <div class="content">
-                <div v-text="$attrs.data.description"></div>
+                <div v-html="$attrs.data.description"></div>
                 <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
             </div>
         </div>

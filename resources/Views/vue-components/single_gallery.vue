@@ -1,6 +1,6 @@
 <template>
     <div>
-        <article class="card w-1/5 float-left m-2" v-for="image in this.$attrs.data.images">
+        <article class="card w-1/5 flex float-left m-2" v-for="image in this.$attrs.data.images">
             <div class="card-image">
                 <figure class="image is-16by9">
                     <a :href="url + image.uuid">

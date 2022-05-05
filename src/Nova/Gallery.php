@@ -5,12 +5,11 @@ namespace Webfactor\WfBasicFunctionPackage\Nova;
 use App\Nova\Resource;
 use App\Nova\User;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 
 class Gallery extends Resource
@@ -49,10 +48,10 @@ class Gallery extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param NovaRequest $request
      * @return array
      */
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
         return [
             ID::make(__('ID'), 'id')->sortable(),
@@ -61,7 +60,7 @@ class Gallery extends Resource
                 ->rules("max:255")
                 ->creationRules("unique:galleries,slug")
                 ->updateRules('unique:galleries,slug,{{resourceId}}'),
-            Textarea::make("Description", "description")->rules("max:65535", "nullable"),
+            Trix::make("Description", "description")->rules("max:65535", "nullable"),
             BelongsTo::make("user")->exceptOnForms(),
             BelongsTo::make("creator", "creator", User::class)->exceptOnForms(),
             Images::make('Header Image', 'header'),
@@ -72,10 +71,10 @@ class Gallery extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(NovaRequest $request)
     {
         return [];
     }
@@ -83,10 +82,10 @@ class Gallery extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(NovaRequest $request)
     {
         return [
             new \Webfactor\WfBasicFunctionPackage\Nova\Filters\UserFilter(),
@@ -96,10 +95,10 @@ class Gallery extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function lenses(Request $request)
+    public function lenses(NovaRequest $request)
     {
         return [];
     }
@@ -107,10 +106,10 @@ class Gallery extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function actions(Request $request)
+    public function actions(NovaRequest $request)
     {
         return [];
     }

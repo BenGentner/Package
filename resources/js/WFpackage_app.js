@@ -12,7 +12,6 @@ window.axios = axios;
 /*
     TODO:
      - update import path / tests needed (if the path still works when importing the package)
-     - Vue 3 currently not working because of bootstrap (vue 3 code to mount components below in comment)
  */
 
 // import {createApp} from "vue";

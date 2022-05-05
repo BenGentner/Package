@@ -5,7 +5,7 @@
 return
     [
         /*
-         * names of the models used by the package
+         * names of the resources used by the resources
          */
 
         'models' => [

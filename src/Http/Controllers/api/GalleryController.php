@@ -3,10 +3,7 @@
 namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use phpseclib3\Math\PrimeField\Integer;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 
@@ -14,10 +11,10 @@ class GalleryController extends Controller
 {
     public function index($key)
     {
-        $gallery = Gallery::where("title", $key)
+        $gallery = Gallery::where("slug", $key)
                     ->orWhere("id", $key)->first();
         if(!$gallery)
-            abort(Response::HTTP_FORBIDDEN);
+            abort(Response::HTTP_NOT_FOUND);
 
         $gallery->images = $gallery->getMedia("images");
 

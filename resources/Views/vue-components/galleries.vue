@@ -1,10 +1,12 @@
 <template>
     <div>
         <gallery_preview v-for="gallery in galleries"
-                        v-bind:data="gallery"
-                        v-bind:key="gallery.id">
+                             v-bind:data="gallery"
+                             v-bind:key="gallery.id">
         </gallery_preview>
     </div>
+
+
 </template>
 
 <script>

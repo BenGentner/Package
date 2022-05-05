@@ -29,11 +29,6 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        /*
-          TODO:
-           -install command
-           - test / maybe  improve
-         */
         echo "publishing config ";
 
         $this->call('vendor:publish', [
@@ -62,6 +57,12 @@ class InstallCommand extends Command
             '--force' => true,
         ]);
 
+        echo "publishing Nova Resources";
+
+        $this->call('vendor:publish', [
+            '--tag' => 'WfBasicFunctionPackage-nova',
+            '--force' => true,
+        ]);
 
         if($this->confirm('Do you want to install vue?'))
         {

@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers\WfBasicFunctionPackage;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Webfactor\WfBasicFunctionPackage\Models\Category;
-use Webfactor\WfBasicFunctionPackage\Models\post;
 
 class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\PostController
 {

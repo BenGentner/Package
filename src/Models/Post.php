@@ -5,7 +5,6 @@ namespace Webfactor\WfBasicFunctionPackage\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Log;
 
 class Post extends Model
 {

@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers\WfBasicFunctionPackage;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use phpseclib3\Math\PrimeField\Integer;
-use Symfony\Component\HttpFoundation\Response;
-use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 
 class GalleryController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\GalleryController
 {

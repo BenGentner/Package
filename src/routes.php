@@ -43,11 +43,6 @@ Route::middleware('web')->group(function () {
     Route::get("/current_user/", function () {
         return auth()->user();
     });
-
-    /**
-     * TODO next:
-     *  - add more api routes
-     */
 });
 
 Route::get("api/categories", [controllers\api\CategoryController::class, 'show']);

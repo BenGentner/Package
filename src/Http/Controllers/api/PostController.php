@@ -3,21 +3,13 @@
 namespace Webfactor\WfBasicFunctionPackage\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
-use Webfactor\WfBasicFunctionPackage\Models\Category;
-use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 use Webfactor\WfBasicFunctionPackage\Models\post;
 
 class PostController extends Controller
 {
-    /**
-     * not sure if front end create, edit and so on is needed since nova will be used
-     */
-
-
     public function index($key)
     {
         $post = Post::where("slug", $key)
