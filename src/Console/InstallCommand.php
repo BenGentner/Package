@@ -68,6 +68,7 @@ class InstallCommand extends Command
         {
             echo 'installing vue...';
             $this->install("vue");
+            $this->install("vue-loader");
         }
 
         echo "installation completed!";
