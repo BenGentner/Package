@@ -7,6 +7,8 @@
 ###Install:
     composer require webfactor_project/wf_basic_function_package
 
+    php artisan vendor:publish --tag=nova-media-library
+
     php artisan WFBasicFunctionPackage:install
 
     please add:

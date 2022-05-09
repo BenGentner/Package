@@ -16,12 +16,12 @@ class AddMediaTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared('CREATE TRIGGER add_media_trigger AFTER INSERT ON `media`
-        FOR EACH ROW
-            BEGIN
-
-                UPDATE `galleries` SET galleries.header_image_id = NEW.id where id = NEW.model_id;
-            END#');
+//        DB::unprepared('CREATE TRIGGER add_media_trigger AFTER INSERT ON `media`
+//        FOR EACH ROW
+//            BEGIN
+//
+//                UPDATE `galleries` SET galleries.header_image_id = NEW.id where id = NEW.model_id;
+//            END#');
     }
 
     /**
@@ -31,6 +31,6 @@ class AddMediaTrigger extends Migration
      */
     public function down()
     {
-        DB::unprepared("DROP TRIGGER `add_media_trigger`");
+//        DB::unprepared("DROP TRIGGER `add_media_trigger`");
     }
 }
