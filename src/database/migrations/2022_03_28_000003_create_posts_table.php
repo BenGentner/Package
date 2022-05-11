@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger("category_id")->nullable();
             $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("creator_user_id")->nullable();
-            $table->text("excerpt");
-            $table->text("body");
+            $table->text("excerpt")->nullable();
+            $table->text("body")->nullable();
             $table->boolean("commentable")->default(true);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
