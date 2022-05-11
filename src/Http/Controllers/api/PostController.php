@@ -29,10 +29,10 @@ class PostController extends Controller
         $category = $request->category;
 
         if($category)
-            return Post::latest()->where("category_id", $category)->search(\request(["search"]))->take($amount)->skip($skip)->with(["user", "category", "tags"])->get();
+            return config('wf-resource.models.post')::latest()->where("category_id", $category)->search(\request(["search"]))->take($amount)->skip($skip)->with(["user", "category", "tags"])->get();
 
         //get posts from all categories
-        return Post::query()->search(\request(["search"]))->take($amount)->skip($skip)->with(["user", "category", "tags"])->get();
+        return config('wf-resource.models.post')::query()->search(\request(["search"]))->take($amount)->skip($skip)->with(["user", "category", "tags"])->get();
     }
 
     public function store()
