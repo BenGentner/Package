@@ -9,11 +9,11 @@ class TagController extends Controller
 {
     public function show()
     {
-        return Tag::all();
+        return config('wf-resource.models.tag')::all();
     }
     public function index($key)
     {
-        return Tag::where("slug", $key)
+        return config('wf-resource.models.tag')::where("slug", $key)
             ->orWhere("id", $key)->first();
     }
 }

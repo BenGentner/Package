@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\Response;
-use Webfactor\WfBasicFunctionPackage\Models\post;
+use Webfactor\WfBasicFunctionPackage\Models\Post;
 
 class PostController extends Controller
 {
     public function index($key)
     {
-        $post = Post::where("slug", $key)
+        $post = config('wf-resource.models.post')::where("slug", $key)
                         ->orwhere('id', $key)->first()->load(["user", "comments", "category", "tags"]);
         if(!$post)
             abort(Response::HTTP_NOT_FOUND);
@@ -38,7 +38,7 @@ class PostController extends Controller
     public function store()
     {
         // store Post in db + validation (gets called by post method)
-        Post::create(array_merge($this->validatePost(),
+        config('wf-resource.models.post')::create(array_merge($this->validatePost(),
             [
                 'user_id' => auth()->id(),
                 'creator_user_id' => auth()->id(),

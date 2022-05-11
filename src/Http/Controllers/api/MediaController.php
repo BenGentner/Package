@@ -10,7 +10,7 @@ class MediaController extends Controller
 {
     public function index($key)
     {
-        $media = Media::where("uuid", $key)
+        $media = config('wf-resource.models.media')::where("uuid", $key)
             ->orWhere("name", $key)->first();
         if(!$media)
             abort(404);

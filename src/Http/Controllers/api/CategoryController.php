@@ -9,11 +9,11 @@ class CategoryController extends Controller
 {
     public function show()
     {
-        return Category::all();
+        return config('wf-resource.models.category')::all();
     }
     public function index($key)
     {
-        return Category::where("slug", $key)
+        return config('wf-resource.models.category')::where("slug", $key)
             ->orWhere("id", $key)->first();
     }
 }

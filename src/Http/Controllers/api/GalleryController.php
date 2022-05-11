@@ -11,7 +11,7 @@ class GalleryController extends Controller
 {
     public function index($key)
     {
-        $gallery = Gallery::where("slug", $key)
+        $gallery = config('wf-resource.models.gallery')::where("slug", $key)
                     ->orWhere("id", $key)->first();
         if(!$gallery)
             abort(Response::HTTP_NOT_FOUND);
@@ -25,7 +25,7 @@ class GalleryController extends Controller
         $skip = \request()->skip ? \request()->skip : config('wf-base.default_skip_galleries');
         $amount = \request()->amount ? \request()->amount : config('wf-base.default_amount_galleries');
 
-        return Gallery::latest()->take($amount)->skip($skip)->with(['user', 'header_image'])->get();
+        return config('wf-resource.models.gallery')::latest()->take($amount)->skip($skip)->with(['user', 'header_image'])->get();
     }
     protected function validation()
     {

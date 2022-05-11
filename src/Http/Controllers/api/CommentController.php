@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     public function index($key)
     {
-        $post = Post::where("slug", $key)
+        $post = config('wf-resource.models.post')::where("slug", $key)
             ->orWhere("id", $key)->first();
 
         if(!$post)
@@ -29,7 +29,7 @@ class CommentController extends Controller
         }
 
 
-        Comment::create(array_merge($this->validation(), [
+        config('wf-resource.models.comment')::create(array_merge($this->validation(), [
             "post_id" => $post->id,
             "user_id" => auth()->user()->id
         ]));
@@ -39,7 +39,7 @@ class CommentController extends Controller
     }
     public function update($key)
     {
-        $comment = Comment::find($key);
+        $comment = config('wf-resource.models.comment')::find($key);
 
         if(!$comment)
             abort(Response::HTTP_FORBIDDEN);
