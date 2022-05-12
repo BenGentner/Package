@@ -23,6 +23,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             - login route in config (used in create comment.vue) maybe add redirect to the post or sth. like that
             - placeholder image
             - tests... a lot of them
+            - test if migrations should be publishable
          */
     /**
      * Register services.

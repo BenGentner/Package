@@ -31,28 +31,24 @@ class PublishCommand extends Command
         echo "publishing js & vue ";
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-views',
-            '--force' => true,
         ]);
 
         echo "publishing controllers ";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-controllers',
-            '--force' => true,
         ]);
 
         echo "publishing config ";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-config',
-            '--force' => true,
         ]);
 
         echo "publishing Nova Resources";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-nova',
-            '--force' => true,
         ]);
 
     }

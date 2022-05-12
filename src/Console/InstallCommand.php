@@ -33,35 +33,30 @@ class InstallCommand extends Command
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-config',
-            '--force' => true,
         ]);
 
         echo "publishing editable views";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-views',
-            '--force' => true,
         ]);
 
         echo "publishing js";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-js',
-            '--force' => true,
         ]);
 
         echo "publishing controllers";
 
         $this->call('vendor:publish', [
             '--tag' => ' WfBasicFunctionPackage-controllers',
-            '--force' => true,
         ]);
 
         echo "publishing Nova Resources";
 
         $this->call('vendor:publish', [
             '--tag' => 'WfBasicFunctionPackage-nova',
-            '--force' => true,
         ]);
 
         if($this->confirm('Do you want to install vue?'))
