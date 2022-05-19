@@ -9,23 +9,24 @@ use Webfactor\WfBasicFunctionPackage\Models\Gallery;
 
 class GalleryController extends Controller
 {
-    public function index($key)
+    public function index()
+    {
+
+        $skip = \request()->skip ? \request()->skip : config('wf-base.default_skip_galleries');
+        $amount = \request()->amount ? \request()->amount : config('wf-base.default_amount_galleries');
+
+        return config('wf-resource.models.gallery')::latest()->take($amount)->skip($skip)->with(['user', 'header_image'])->get();
+    }
+    public function show($key)
     {
         $gallery = config('wf-resource.models.gallery')::where("slug", $key)
-                    ->orWhere("id", $key)->first();
+            ->orWhere("id", $key)->first();
         if(!$gallery)
             abort(Response::HTTP_NOT_FOUND);
 
         $gallery->images = $gallery->getMedia("images");
 
         return $gallery;
-    }
-    public function show()
-    {
-        $skip = \request()->skip ? \request()->skip : config('wf-base.default_skip_galleries');
-        $amount = \request()->amount ? \request()->amount : config('wf-base.default_amount_galleries');
-
-        return config('wf-resource.models.gallery')::latest()->take($amount)->skip($skip)->with(['user', 'header_image'])->get();
     }
     protected function validation()
     {

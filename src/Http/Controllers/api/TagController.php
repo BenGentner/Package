@@ -7,13 +7,13 @@ use Webfactor\WfBasicFunctionPackage\Models\Tag;
 
 class TagController extends Controller
 {
-    public function show()
-    {
-        return config('wf-resource.models.tag')::all();
-    }
-    public function index($key)
+    public function show($key)
     {
         return config('wf-resource.models.tag')::where("slug", $key)
             ->orWhere("id", $key)->first();
+    }
+    public function index()
+    {
+        return config('wf-resource.models.tag')::all();
     }
 }

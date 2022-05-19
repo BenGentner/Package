@@ -10,18 +10,10 @@ use Webfactor\WfBasicFunctionPackage\Models\Post;
 
 class PostController extends Controller
 {
-    public function index($key)
+    public function index(Request $request)
     {
-        $post = config('wf-resource.models.post')::where("slug", $key)
-                        ->orwhere('id', $key)->first()->load(["user", "comments", "category", "tags"]);
-        if(!$post)
-            abort(Response::HTTP_NOT_FOUND);
 
-        return $post;
-    }
 
-    public function show(Request $request)
-    {
         $skip = $request->skip ? $request->skip : config('wf-base.default_skip_posts');
         $amount = $request->amount ? $request->amount :  config('wf-base.default_amount_posts');
 
@@ -33,6 +25,16 @@ class PostController extends Controller
 
         //get posts from all categories
         return config('wf-resource.models.post')::query()->search(\request(["search"]))->take($amount)->skip($skip)->with(["user", "category", "tags"])->get();
+    }
+
+    public function show($key)
+    {
+        $post = config('wf-resource.models.post')::where("slug", $key)
+            ->orwhere('id', $key)->first()->load(["user", "comments", "category", "tags"]);
+        if(!$post)
+            abort(Response::HTTP_NOT_FOUND);
+
+        return $post;
     }
 
     public function store()

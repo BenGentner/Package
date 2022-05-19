@@ -5,14 +5,15 @@ namespace App\Http\Controllers\WfBasicFunctionPackage;
 
 class GalleryController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\GalleryController
 {
-    public function index($key)
+    public function index()
+    {
+
+        return view("Webfactor/WfBasicFunctionPackage/galleries");
+    }
+
+    public function show($key)
     {
         $gallery = parent::index($key);
         return view("Webfactor/WfBasicFunctionPackage/single_gallery", compact("gallery"));
-    }
-
-    public function show()
-    {
-        return view("Webfactor/WfBasicFunctionPackage/galleries");
     }
 }

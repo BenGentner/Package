@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 
 class PostController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers\api\PostController
 {
-    public function index($post)
+    public function index(Request $request)
     {
-        $post = parent::index($post);
-        return view("Webfactor/WfBasicFunctionPackage/single_post", compact("post"));
+        return view("Webfactor/WfBasicFunctionPackage/posts");
     }
 
 
-    public function show(Request $request)
+    public function show($post)
     {
-        return view("Webfactor/WfBasicFunctionPackage/posts");
+        $post = parent::index($post);
+        return view("Webfactor/WfBasicFunctionPackage/single_post", compact("post"));
     }
 
 }

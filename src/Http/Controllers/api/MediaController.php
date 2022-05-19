@@ -8,7 +8,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaController extends Controller
 {
-    public function index($key)
+    public function show($key)
     {
         $media = config('wf-resource.models.media')::where("uuid", $key)
             ->orWhere("name", $key)->first();
