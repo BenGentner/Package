@@ -63,7 +63,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/database/migrations' => database_path("migrations/WfBasicFunctionsPackage/migrations/")
-        ], 'WFBasicFunctionPackage-migrations');
+        ], 'WfBasicFunctionPackage-migrations');
     }
 
     private function load()
