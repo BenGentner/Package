@@ -5,6 +5,7 @@ namespace Webfactor\WfBasicFunctionPackage\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -74,6 +75,7 @@ class Post extends Model
 
     public function save(array $options = [])
     {
+        $this->slug = Str::slug($this->title);
         $this->user_id = auth()?->id();
         if(!$this->creator_user_id)
             $this->creator_user_id = auth()?->id();

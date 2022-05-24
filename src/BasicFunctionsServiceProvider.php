@@ -6,6 +6,7 @@ use Database\Seeders\DatabaseSeeder;
 use Illuminate\Support\ServiceProvider;
 use Webfactor\WfBasicFunctionPackage\Console\InstallCommand;
 use Webfactor\WfBasicFunctionPackage\Console\PublishCommand;
+use Webfactor\WfBasicFunctionPackage\Console\PublishMigrations;
 
 class BasicFunctionsServiceProvider extends ServiceProvider
 {
@@ -55,6 +56,14 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->registerPublishableResources();
         $this->registerPublishableControllers();
         $this->registerPublishableNova();
+        $this->registerPublishableMigrations();
+    }
+
+    private function registerPublishableMigrations()
+    {
+        $this->publishes([
+            __DIR__.'/database/migrations' => database_path("migrations/WfBasicFunctionsPackage/migrations/")
+        ], 'WFBasicFunctionPackage-migrations');
     }
 
     private function load()
@@ -68,6 +77,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
 //        $this->loadSeeders(config('wf-resource.seeder'));
         $this->loadNova();
     }
+
 
     private function loadNova()
     {
@@ -121,6 +131,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
             $this->commands([
                 InstallCommand::class,
                 PublishCommand::class,
+                PublishMigrations::class,
             ]);
         }
     }
