@@ -65,9 +65,14 @@ class Gallery extends Model implements HasMedia
 //            $callback->creator_user_id = auth()->user()?->id;
 //        });
 //    }
+    public function createSlug()
+    {
+        return Str::slug($this->title);
+    }
+
     public function save(array $options = [])
     {
-        $this->slug = Str::slug($this->title);
+        $this->slug = $this->createSlug();
         $this->user_id = auth()?->id();
         if(!$this->creator_user_id)
             $this->creator_user_id = auth()?->id();
