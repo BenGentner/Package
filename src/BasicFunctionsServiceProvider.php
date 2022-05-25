@@ -62,7 +62,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     private function loadMigrations()
     {
         $this->registerPublishableMigrations();
-        $this->loadMigrationFrom(config('wf-resource.migrations'));
+        $this->loadMigrationsFrom(config('wf-resource.migrations'));
     }
 
     private function registerPublishableMigrations()
