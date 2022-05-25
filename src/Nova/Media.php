@@ -72,11 +72,8 @@ class Media extends Resource
             Text::make("Name of the file:", "file_name")->hideFromIndex(),
             Text::make("Name of the collection", "collection_name")->hideFromIndex(),
             Avatar::make('Medium')->thumbnail(function () {
-                $path = "storage/" . $this->id . '/';
-                $files = scandir($path);
-                info($files[sizeof($files) - 1]);
-
-                return "/" . $path . $files[sizeof($files) - 1];
+                $path = "storage" . config('media-library.prefix'). '/' . $this->id . '/';
+                return "/" . $path . $this->file_name;
             }),
 
         ];
