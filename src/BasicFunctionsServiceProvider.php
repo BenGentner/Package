@@ -48,6 +48,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->registerCommands();
         $this->load();
         $this->registerPublishableContent();
+        $this->loadMigrations();
     }
 
     private function registerPublishableContent()
@@ -56,7 +57,12 @@ class BasicFunctionsServiceProvider extends ServiceProvider
         $this->registerPublishableResources();
         $this->registerPublishableControllers();
         $this->registerPublishableNova();
+    }
+
+    private function loadMigrations()
+    {
         $this->registerPublishableMigrations();
+        $this->loadMigrationsFrom(config('wf-resource.migrations') ? __DIR__.'/database/migrations' : config('wf-resource.migrations'));
     }
 
     private function registerPublishableMigrations()
@@ -69,7 +75,7 @@ class BasicFunctionsServiceProvider extends ServiceProvider
     private function load()
     {
         $this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
 //        $this->loadViewsFrom(__DIR__.'/../resources/Views/views', 'WfFunctions');
         /**
          * seeders not needed outside package-test

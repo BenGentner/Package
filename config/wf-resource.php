@@ -5,6 +5,13 @@
 return
     [
         /*
+         * Path from where the migrations will be loaded
+         * When the migrations have been published and changed you should use the second path
+         */
+        'migrations' => __DIR__.'/database/migrations',
+//        'migrations' => database_path("migrations/WfBasicFunctionsPackage/migrations/"),
+
+        /*
          * names of the resources used by the resources
          */
 
