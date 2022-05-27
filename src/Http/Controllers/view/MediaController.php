@@ -7,6 +7,6 @@ class MediaController extends \Webfactor\WfBasicFunctionPackage\Http\Controllers
 {
     public function show($key)
     {
-        return redirect(parent::index($key));
+        return redirect(parent::show($key));
     }
 }
